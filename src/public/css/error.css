@@ -1,0 +1,41 @@
+.emoji {
+  font-size: 8rem;
+  font-weight: 300;
+}
+
+html, body {
+  overflow: hidden;
+}
+
+.error {
+  position: absolute;
+  left: 10vw;
+  top: 5vh;
+  display: block;
+}
+
+.text {
+  margin-top: -10vh;
+  font-weight: 300;
+  padding-right: 40vw;
+  font-size: 2rem;
+}
+
+.error .qr-code {
+  margin-top: -3vh;
+  align-items: top;
+  justify-content: top;
+  display: flex;
+}
+
+.error .qr-code img {
+  width: 6vw;
+  height: 6vw;
+}
+
+.qr-code p {
+  margin-top: 0.1vh;
+  font-weight: 300;
+}
+
+/*# sourceMappingURL=error.css.map */

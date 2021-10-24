@@ -1,0 +1,5 @@
+// Terminal 1
+npx nodemon
+
+// Terminal 2
+sass --watch public/sass:public/css
