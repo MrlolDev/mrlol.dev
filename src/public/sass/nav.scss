@@ -1,0 +1,52 @@
+$background-color: #3b9bd7;
+$black: #121212;
+$dark-grey: #242424;
+$grey: #e0dfdd;
+$white: #fff;
+$dark-color: #2062af;
+$color: #3b9bd7;
+$light-color:#78ddf8;
+
+.lol-nav {
+    position: absolute;
+    bottom: 5vh;
+    background: $dark-grey;
+    height: 8vh;
+    display: flex;
+    transition: all 0.3s;
+    left:10vw;
+    width: 80vw;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 100%;
+        border: transparent solid 4vh;
+        border-left-color: $dark-grey;
+      }
+      &[open="false"] {
+          width: .01vw;
+      }
+      &[open="false"] .gem {
+        width: 8vh;
+        left: -4vh;
+        z-index: 1;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        /* esta es la parte importante */
+        left: -8vh;
+        border: transparent solid 4vh;
+        border-right-color: $dark-grey;
+      }
+}
+.lol-nav .gem {
+    width: 8vw;
+    height: 6vh;
+    top: 1vh;
+    cursor: pointer;
+    position: absolute;
+    left: -8vh;
+}

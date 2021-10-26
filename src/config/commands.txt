@@ -2,4 +2,4 @@
 npx nodemon
 
 // Terminal 2
-sass --watch public/sass:public/css
+sass -w public/sass:public/css

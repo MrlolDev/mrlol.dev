@@ -1,0 +1,13 @@
+<nav class="lol-nav"  open="false">
+        <img class="gem" src="/assets/gem.svg" onclick="toogleNav()">
+</nav>
+<script>
+    function toogleNav() {
+        var nav = document.querySelector('nav.lol-nav');
+        if(nav.attributes.open.value == 'true') {
+            nav.setAttribute('open', 'false');
+        } else {
+            nav.setAttribute('open', 'true');
+        }
+    }
+</script>
