@@ -60,14 +60,29 @@ const server = app.listen(app.get("port"), async () => {
     console.log(`§fPuerto: §9${app.get("port")}`);
 })
 
+//websocket
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*:*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+io.on("connection", socket => {
+  socket.on("disconnect", async () => {
+    socket.emit("disconnected")
+  })
+  socket.on("user-connected", async (id) => {
+    console.log(`${id} connected`)
+  })
+})
 //routes
 app.get('/os',secured, async (req, res) => {
-  res.render('os')
+  res.render('os', {userID: req.user.id})
 })
 app.get(
   "/auth/login",
-  passport.authenticate("auth0", {
-    scope: "email profile",     }),
+  passport.authenticate("auth0", {scope: 'openid email profile', state: { customState: 'custom'} }),
   (req, res) => {
     res.redirect("/os");
   }
@@ -90,7 +105,7 @@ app.get("/auth/callback", (req, res, next) => {
     });
   })(req, res, next);
 });
-app.get("/logout", (req, res) => {
+app.get("/auth/logout", (req, res) => {
   req.logOut();
   res.redirect('/')
 })

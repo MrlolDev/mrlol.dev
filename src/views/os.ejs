@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página en mantenimiento</title>
+    <title>lol os</title>
     <%- include('others/head.ejs') %>
     <link rel="stylesheet" href="/css/nav.css">
+    <script>
+        var userID = `<%-userID%>`
+    </script>
+<script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="/js/socket.js"></script>
 </head>
 <body>
     <%- include('others/nav.ejs') %>
-
+    <script src="/js/apps.js"></script>
 </body>
 </html>
