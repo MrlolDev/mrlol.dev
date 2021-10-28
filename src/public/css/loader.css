@@ -10,20 +10,23 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-html, body {
-  overflow-x: hidden;
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14vw;
+  height: 14vw;
+  animation: load 2s linear infinite;
 }
 
-.card {
-  border-radius: 0.5rem;
-  background: #242424;
-  padding: 0.5rem 0.5rem;
-  align-items: left;
-  color: #fff;
+@keyframes load {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
-.card .card-header {
-  font-weight: bold;
-}
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=loader.css.map */

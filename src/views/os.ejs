@@ -15,6 +15,9 @@
 </head>
 <body>
     <%- include('others/nav.ejs') %>
+    <script>
+        document.getElementsByTagName("body")[0].style = "background: url(<%=os.background%>); background-repeat: no-repeat; background-size: cover;" 
+    </script>
     <script src="/js/apps.js"></script>
 </body>
 </html>

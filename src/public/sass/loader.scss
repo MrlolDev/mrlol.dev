@@ -4,10 +4,8 @@ $black: #121212;
 $grey: #e0dfdd;
 $white: #fff;
 $dark-color: #2062af;
-$dark-grey: #242424;
 $color: #3b9bd7;
 $light-color:#78ddf8;
-
 body {
     background: #2062af;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #78ddf8, #3b9bd7);  /* Chrome 10-25, Safari 5.1-6 */
@@ -15,17 +13,22 @@ body {
         color: $white;    
     font-family: 'Roboto', sans-serif;
 }
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:14vw;
+    height:14vw;
+    animation: load 2s linear infinite;
+}
 
-html, body {
-    overflow-x: hidden;
+@keyframes load {
+    0% {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%,-50%) rotate(360deg);
+    }
 }
-.card {
-    border-radius: .5rem;
-    background: $dark-grey;
-    padding: .5rem .5rem;
-    align-items: left;
-    color: #fff;
-}
-.card .card-header {
-    font-weight: bold;
-}
+

@@ -6,6 +6,5 @@ const eSchema = new Schema({
     apps: Array,
     background: String,
     theme: String,
-    
 })
 module.exports = mongoose.model('os', eSchema);

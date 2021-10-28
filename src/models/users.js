@@ -3,9 +3,8 @@ const { Schema } = mongoose;
 
 const eSchema = new Schema({
     _id: String,
-    email: String,
     avatar: String,
-    created_at: String,
     nickname: String,
+    isAdmin: Boolean,
 })
 module.exports = mongoose.model('users', eSchema);

@@ -1,5 +1,7 @@
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
+var Users = require("../models/users");
+var OS = require("../models/os")
 
 passport.serializeUser((user, done) => {
     done(null, user);
@@ -16,7 +18,31 @@ passport.use(new Auth0Strategy(
       callbackURL: process.env.AUTH0_CALLBACK_URL,
       state: true
     },
-    function(accessToken, refreshToken, extraParams, profile, done) {
+    async function(accessToken, refreshToken, extraParams, profile, done) {
+      await initProfile(profile)
       return done(null, profile);
     }
   ));
+  async function initProfile(profile) {
+    var user = await Users.findOne({_id: profile.id}).exec()
+    var os = await OS.findOne({_id: profile.id}).exec()
+    if(!os) {
+      var newOS = new OS({
+        _id: profile.id,
+        apps: [],
+        background: 'https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg',
+        theme: 'dark',
+      })
+      newOS.save()
+    }
+    if(!user) {
+      var newUser = new Users({
+        _id: profile.id,
+        avatar: profile.picture,
+        nickname: profile.nickname,
+        isAdmin: false,
+      })
+      newUser.save()
+    }
+  }
+
