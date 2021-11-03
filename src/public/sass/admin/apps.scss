@@ -1,4 +1,9 @@
 .card {
     width: 20vw;
-    height: 20vh;
+    height: 40vh;
+}
+.l-label {
+    &.two {
+        margin-bottom:0
+    }
 }

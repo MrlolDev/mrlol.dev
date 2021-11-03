@@ -16,18 +16,73 @@ html, body {
 
 .card {
   border-radius: 0.5rem;
-  background: #242424;
+  background: #2b2b2b;
+  overflow: hidden;
   padding: 0.5rem 0.5rem;
   align-items: left;
   color: #fff;
 }
-
 .card .card-header {
   position: absolute;
   top: 0;
   display: flex;
   align-items: center;
   font-weight: bold;
+}
+.card .card-content {
+  position: relative;
+  top: 3vh;
+}
+
+.l-input-text {
+  outline: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 1.25rem;
+  border: 1px solid #121212;
+  background: #242424;
+}
+.l-input-text:focus {
+  border: 1px solid #3b9bd7;
+}
+
+.l-label {
+  position: relative;
+  font-size: 1.25rem;
+  color: #e0dfdd;
+  margin-top: 1vh;
+}
+
+.l-input-group {
+  position: relative;
+  height: fit-content;
+}
+.l-input-group .l-input-text {
+  position: relative;
+  top: -3vh;
+}
+
+.l-btn {
+  width: fit-content;
+  height: fit-content;
+  color: #F2F2F2;
+  transition: all 0.2s;
+  cursor: pointer;
+  outline: none;
+  font-size: 1.25rem;
+  border-radius: 0.25rem;
+  border: 2px solid #F2F2F2;
+}
+.l-btn:hover {
+  color: #fff;
+  border: 2px solid #fff;
+}
+.l-btn:active {
+  transform: scale(1.1);
+}
+.l-btn.primary {
+  background: linear-gradient(to right, #78ddf8, #3b9bd7);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /*# sourceMappingURL=style.css.map */
