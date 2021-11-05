@@ -10,20 +10,22 @@
 </head>
 <body>
     <div class="card">
-        <div class="card-header">
+        <header class="card-header">
             <h3 class="text">Añadir app</h3>
-        </div>
+        </header>
         <div class="card-content">
-            <div class="l-input-group">
-                <p class="l-label">Nombre</p>
-                <input type="text" class="l-input-text">    
+            <form action="/admin/app/add" method="POST" enctype="multipart/form-data">
+                <div class="l-input-group">
+                    <p class="l-label">Nombre</p>
+                    <input type="text" class="l-input-text">    
+                </div>
+                <div class="l-input-group">
+                    <p class="l-label two">Icono:</p>
+                    <input type="file" accept="image/*" class="l-input-file">
+                </div>
+                <button class="l-btn primary" type="submit">Añadir</button>
             </div>
-            <div class="l-input-group">
-                <p class="l-label two">Icono:</p>
-                <input type="file" accept="image/*" class="l-input-file">
-            </div>
-            <button class="l-btn primary">Añadir</button>
-        </div>
+        </form> 
     </div>
 </body>
 </html>
