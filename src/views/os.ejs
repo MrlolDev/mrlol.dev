@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lol os</title>
     <%- include('others/head.ejs') %>
-    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/others/nav.css">
+    <link rel="stylesheet" href="/css/others/rc.css">
     <script>
         var userID = `<%-userID%>`
     </script>
@@ -14,6 +15,7 @@
     <script defer src="/js/socket.js"></script>
 </head>
 <body>
+    <%- include('others/rc.ejs') %> 
     <%- include('apps/desktop.ejs') %>
     <%- include('apps/JmzM5wQeisam2SA2KkAalGyM.ejs') %>
     <%- include('others/nav.ejs') %>
