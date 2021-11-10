@@ -17,15 +17,23 @@
             <form action="/admin/app/add" method="POST" enctype="multipart/form-data">
                 <div class="l-input-group">
                     <p class="l-label">Nombre</p>
-                    <input type="text" class="l-input-text">    
+                    <input type="text" name="name" class="l-input-text">    
                 </div>
                 <div class="l-input-group">
                     <p class="l-label two">Icono:</p>
-                    <input type="file" accept="image/*" class="l-input-file">
+                    <input type="file" accept="image/*" name="icon"class="l-input-file">
                 </div>
                 <button class="l-btn primary" type="submit">Añadir</button>
             </div>
         </form> 
+    </div>
+    <div class="l-apps">
+        <% apps.forEach(app => { %> 
+            <div class="l-app">
+                <img src="<%=app.icon%>" class="app-icon">
+                <h3><%=app.name%></h3>
+            </div>    
+        <%})%>
     </div>
 </body>
 </html>

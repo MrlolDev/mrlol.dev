@@ -38,6 +38,7 @@ html, body {
   outline: none;
   border-radius: 0.25rem;
   color: #fff;
+  height: 4vh;
   font-size: 1.25rem;
   border: 1px solid #121212;
   background: #242424;
@@ -50,12 +51,13 @@ html, body {
   position: relative;
   font-size: 1.25rem;
   color: #e0dfdd;
-  margin-top: 1vh;
 }
 
 .l-input-group {
   position: relative;
   height: fit-content;
+  margin-top: 0.5vh;
+  margin-bottom: 1vh;
 }
 .l-input-group .l-input-text {
   position: relative;
@@ -83,6 +85,60 @@ html, body {
 .l-btn.primary {
   background: linear-gradient(to right, #78ddf8, #3b9bd7);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* Apps Desktop */
+.os-apps {
+  height: 100%;
+  position: absolute;
+  top: 2vw;
+  left: 0vw;
+  display: flex;
+  align-items: flex;
+}
+.os-apps .os-apps-row {
+  display: flex;
+  flex-direction: column;
+}
+.os-apps .os-apps-row .os-app {
+  width: 14vw;
+  height: 14vw;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+}
+.os-apps .os-apps-row .os-app[selected=true]:before {
+  content: "";
+  position: absolute;
+  top: -1vw;
+  border: 1px solid #3b9bd7;
+  width: 10vw;
+  opacity: 0.3;
+  height: 10vw;
+  background: #78ddf8;
+  z-index: 100;
+}
+.os-apps .os-apps-row .os-app img {
+  border-radius: 0.5rem;
+  width: 6vw;
+  box-shadow: 1px 1px 15px 5px rgba(0, 0, 0, 0.1);
+  height: 6vw;
+}
+.os-apps .os-apps-row .os-app p {
+  margin-top: 0.1vh;
+}
+
+/* App window */
+.l-app[open=false] {
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
 }
 
 /*# sourceMappingURL=style.css.map */

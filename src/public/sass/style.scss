@@ -44,6 +44,7 @@ html, body {
     outline: none;
     border-radius: .25rem;
     color: $white;
+    height:4vh;
     font-size: 1.25rem;
     border: 1px solid $black;
     background: $black-grey;
@@ -51,15 +52,17 @@ html, body {
         border: 1px solid $color;
     }
 }
+
 .l-label {
     position: relative;
     font-size: 1.25rem;
     color: $grey;
-    margin-top: 1vh;
 }
 .l-input-group {
     position: relative;
     height: fit-content;
+    margin-top: .5vh;
+    margin-bottom: 1vh;
     .l-input-text {
         position: relative;
         top: -3vh;
@@ -86,4 +89,61 @@ html, body {
         background: linear-gradient(to right,  $light-color, $color); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
   
+}
+/* Apps Desktop */
+.os-apps {
+    height: 100%;
+    position: absolute;
+    top: 2vw;
+    left: 0vw;
+    display: flex;
+    align-items: flex;
+    .os-apps-row {
+        display: flex;
+        flex-direction: column;
+        .os-app {
+            width: 14vw;
+            height: 14vw;
+            display: flex;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: -moz-none;
+            -o-user-select: none;
+            user-select: none;
+            &[selected="true"] {
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: -1vw;
+                    border: 1px solid $color;
+                    width: 10vw;
+                    opacity: 0.3;
+                    height: 10vw;
+                    background: $light-color;
+                    z-index: 100;
+                }
+            }
+            img {
+                border-radius: 0.5rem;
+                width: 6vw;
+                box-shadow: 1px 1px 15px 5px rgba(0,0,0,0.1);
+                height: 6vw;
+            }
+            p {
+                margin-top: .1vh;
+            }
+        }
+    }
+}
+/* App window */
+.l-app {
+    &[open="false"] {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+    }
+
 }

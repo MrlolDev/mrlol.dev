@@ -7,6 +7,9 @@ $dark-color: #2062af;
 $color: #3b9bd7;
 $light-color:#78ddf8;
 
+html,body {
+  overflow: hidden !important;
+}
 .lol-nav {
     position: absolute;
     bottom: 5vh;

@@ -1,3 +1,7 @@
+html, body {
+  overflow: hidden !important;
+}
+
 .lol-nav {
   position: absolute;
   bottom: 5vh;
