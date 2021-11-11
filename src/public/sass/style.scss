@@ -21,6 +21,70 @@ body {
 html, body {
     overflow-x: hidden;
 }
+/* App window */
+.l-app {
+    position:  absolute;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    &[open="false"] {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+    }
+    &[restore="true"] {
+        width: 50vw;
+        height: 50vh;
+    }
+    &[restore="false"] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 90vw;
+        height: 90vh;
+    }
+    .l-app-content {
+        width: 100%;
+        color: #000000;
+        height: 100%;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        background: $white;
+        .l-app-iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .l-app-nav {
+        width: 100%;
+        background: $black-grey;
+        font-size: 1.25rem;
+        border-radius: .25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+            margin: 0;
+            margin-left: .25vw;
+        }
+        .icons {
+            display: flex;
+            align-items: center;
+            i {
+                cursor: pointer;
+                transition: all 0.3s;
+                color: $light-grey;
+            margin-right: .5vw;
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+/* Card */
 .card {
     border-radius: .5rem;
     background: $dark-grey;
@@ -123,7 +187,6 @@ html, body {
                     opacity: 0.3;
                     height: 10vw;
                     background: $light-color;
-                    z-index: 100;
                 }
             }
             img {
@@ -137,13 +200,4 @@ html, body {
             }
         }
     }
-}
-/* App window */
-.l-app {
-    &[open="false"] {
-        visibility: hidden;
-        opacity: 0;
-        z-index: -1;
-    }
-
 }

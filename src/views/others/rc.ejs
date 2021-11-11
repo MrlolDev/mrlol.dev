@@ -1,9 +1,12 @@
 <menu id="rcMenu" class="rc-menu" active="false">
     <div class="rc-options">
-        <p class="rc-option icon"><i class="fab fa-css3-alt"></i>CSS</p>
+        <p class="rc-option icon" onclick="newPage(this)" href="https://github.com/MrlolDev"><i class="fab fa-github"></i>Github</p>
     </div>
 </menu>
 <script>
+  function newPage(page) {
+      window.open(page.attributes.href.value)
+  }
     var nowSubMenu = null;
           if (document.addEventListener) {
     document.addEventListener('contextmenu', function(e) {
