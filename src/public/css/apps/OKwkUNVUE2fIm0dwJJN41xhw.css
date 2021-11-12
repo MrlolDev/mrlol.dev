@@ -1,0 +1,21 @@
+.l-app-content .configs {
+  position: relative;
+  top: 2vh;
+  left: 1vw;
+  display: flex;
+  flex-direction: column;
+}
+.l-app-content .configs .cg {
+  width: 80%;
+  background: #2b2b2b;
+  border-radius: 0.5rem;
+  color: #fff;
+}
+.l-app-content .configs .cg .cg-title {
+  text-align: left;
+  position: relative;
+  top: -2.25vh;
+  margin-left: 0.25vw;
+}
+
+/*# sourceMappingURL=OKwkUNVUE2fIm0dwJJN41xhw.css.map */

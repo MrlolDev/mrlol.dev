@@ -1,0 +1,32 @@
+$background-color: #3b9bd7;
+$black: #121212;
+$grey: #e0dfdd;
+$light-grey: #F2F2F2;
+$white: #fff;
+$dark-color: #2062af;
+$black-grey: #242424;
+$dark-grey: #2b2b2b;
+$color: #3b9bd7;
+$light-color:#78ddf8;
+
+.l-app-content {
+    .configs {
+        position: relative;
+        top: 2vh;
+        left: 1vw;
+        display: flex;
+        flex-direction: column;
+        .cg {
+            width: 80%;
+            background: $dark-grey;
+            border-radius: 0.5rem;
+            color: $white;
+            .cg-title {
+                text-align: left;
+                position: relative;
+                top: -2.25vh;
+                margin-left: .25vw;
+            }
+        }
+    }
+}

@@ -14,6 +14,7 @@ function maximizeApp (appID, icon) {
   if(min == 'true') {
     icon.className = "far fa-window-restore"
     app.attributes.restore.value = "false"
+    app.style = ""
   } else {
     icon.className = "far fa-window-maximize"
     app.attributes.restore.value = "true"

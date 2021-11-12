@@ -8,6 +8,10 @@
     <%- include('others/head.ejs') %>
     <link rel="stylesheet" href="/css/others/nav.css">
     <link rel="stylesheet" href="/css/others/rc.css">
+    <% apps.forEach(app => {%>
+    <link rel="stylesheet" href="/css/apps/<%=app._id%>.css">
+
+    <%})%>
     <script>
         var userID = `<%-userID%>`
     </script>
