@@ -27,6 +27,15 @@ $light-color:#78ddf8;
                 top: -2.25vh;
                 margin-left: .25vw;
             }
+            .cg.content {
+                display: flex;
+                &.column {
+                    flex-direction: column;
+                }
+                &.row {
+                    flex-direction: row;
+                }
+            }
         }
     }
 }

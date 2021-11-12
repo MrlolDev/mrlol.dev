@@ -17,5 +17,14 @@
   top: -2.25vh;
   margin-left: 0.25vw;
 }
+.l-app-content .configs .cg .cg.content {
+  display: flex;
+}
+.l-app-content .configs .cg .cg.content.column {
+  flex-direction: column;
+}
+.l-app-content .configs .cg .cg.content.row {
+  flex-direction: row;
+}
 
 /*# sourceMappingURL=OKwkUNVUE2fIm0dwJJN41xhw.css.map */
