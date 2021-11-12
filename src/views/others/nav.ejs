@@ -1,7 +1,13 @@
 <nav class="lol-nav"  open="false">
         <img class="gem" src="/assets/gem.svg" onclick="toogleNav()">
         <div class="nav-apps">
-            
+            <% if (apps.length <=5) { %> 
+                <% for( var i = 0; i < apps.length; i++ ) {%>
+                    <div class="nav-app">
+                        <img src="<%=apps[i].icon%>" class="nav-app-icon">
+                    </div>
+                <% }%>        
+            <%} %>
         </div>
 </nav>
 <script>
