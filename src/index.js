@@ -106,7 +106,7 @@ app.get("/load/:p", async (req, res) => {
 app.get("/admin/apps", secured, async (req, res) => {
   const admin = await checkAdmin(req.user.id);
   if (admin === false) return res.redirect("/os");
-  var apps = await Apps.find()
+  var apps = await Apps.find().exec()
   res.render("admin/apps", {apps});
 });
 

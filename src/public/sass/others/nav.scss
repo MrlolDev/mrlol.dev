@@ -15,28 +15,77 @@ html,body {
     bottom: 5vh;
     background: $dark-grey;
     height: 8vh;
-    display: flex;
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,.8);
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
     left:10vw;
     width: 80vw;
+    .nav-apps {
+      display: flex;
+      position: relative;
+      left: 10vw;
+      .nav-app {
+        height: 8vh;
+        width: 4vw;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        justify-content: center;
+        display: flex;
+        &[open="true"] {
+            background: #626262;
+        }
+        .nav-app-icon {
+          width: 6vh; 
+          border-radius: 0.5rem;
+          
+        }
+      }
+    }
+    .gem {
+      width: 8vw;
+      height: 6vh;
+      top: 1vh;
+      cursor: pointer;
+      position: absolute;
+      left: -8vh;
+    }
+    .nav-date {
+      color: $grey;
+      right:0vw;
+      position: absolute;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
     &:after {
         content: '';
         position: absolute;
         left: 100%;
         border: transparent solid 4vh;
         border-left-color: $dark-grey;
-      }
-      &[open="false"] {
+    }
+    &[open="false"] {
           width: .01vw;
           box-shadow: none;
-      }
-      &[open="false"] .gem {
+    }
+    &[open="false"] .nav-apps{
+        visibility: hidden;
+        opacity: 0;
+        width: 0;
+    }
+    &[open="false"] .nav-date{
+      visibility: hidden;
+      opacity: 0;
+      width: 0;
+    }
+    &[open="false"] .gem {
         width: 8vh;
         left: -4vh;
         z-index: 1;
-      }
-      &:before {
+    }
+    &:before {
         content: '';
         position: absolute;
         width: 0;
@@ -45,13 +94,5 @@ html,body {
         left: -8vh;
         border: transparent solid 4vh;
         border-right-color: $dark-grey;
-      }
-}
-.lol-nav .gem {
-    width: 8vw;
-    height: 6vh;
-    top: 1vh;
-    cursor: pointer;
-    position: absolute;
-    left: -8vh;
+    }
 }

@@ -15,12 +15,15 @@
     <script defer src="/js/socket.js"></script>
 </head>
 <body>
-    <%- include('apps/JmzM5wQeisam2SA2KkAalGyM.ejs') %>
+    <% apps.forEach(app => {%>
+        <%- include('apps/' + app._id+'.ejs') %>
+    <%})%>
     <%- include('others/rc.ejs') %> 
     <%- include('apps/desktop.ejs') %>
     <%- include('others/nav.ejs') %>
     <script>
-        document.getElementsByTagName("body")[0].style = "background: url(<%=os.background%>); background-repeat: no-repeat; background-size: cover;" 
+
+    document.getElementsByTagName("body")[0].style = "background: url(<%=os.background%>); background-repeat: no-repeat; background-size: cover;" 
     </script>
     <script src="/js/apps.js"></script>
 </body>

@@ -2,11 +2,14 @@ const localStorage = window.localStorage
 var selectedApp = null
 
 function openApp (app) {
+  console.log(app)
   renderApp(app)
+  var navapp = document.getElementById(`nav-${app}`)
+  navapp.attributes.open.value = "true"
   localStorage.setItem(`${app}`, 'open')
 }
 function maximizeApp (appID, icon) {
-  var app = document.getElementById(appID)
+  var app = document.getElementById(`app-${appID}`)
   var min = app.attributes.restore.value
   if(min == 'true') {
     icon.className = "far fa-window-restore"
@@ -17,8 +20,10 @@ function maximizeApp (appID, icon) {
   }
 }
 function closeApp (app) {
-  var appDom = document.getElementById(`${app}`)
+  var appDom = document.getElementById(`app-${app}`)
   appDom.attributes.open.value = 'false';
+  var navapp = document.getElementById(`nav-${app}`)
+  navapp.attributes.open.value = "false"
   localStorage.removeItem(`${app}`)
 }
 function renderApp (app) {

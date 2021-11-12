@@ -7,11 +7,49 @@ html, body {
   bottom: 5vh;
   background: #242424;
   height: 8vh;
-  display: flex;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.8);
   transition: all 0.3s;
+  display: flex;
+  align-items: center;
   left: 10vw;
   width: 80vw;
+}
+.lol-nav .nav-apps {
+  display: flex;
+  position: relative;
+  left: 10vw;
+}
+.lol-nav .nav-apps .nav-app {
+  height: 8vh;
+  width: 4vw;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  justify-content: center;
+  display: flex;
+}
+.lol-nav .nav-apps .nav-app[open=true] {
+  background: #626262;
+}
+.lol-nav .nav-apps .nav-app .nav-app-icon {
+  width: 6vh;
+  border-radius: 0.5rem;
+}
+.lol-nav .gem {
+  width: 8vw;
+  height: 6vh;
+  top: 1vh;
+  cursor: pointer;
+  position: absolute;
+  left: -8vh;
+}
+.lol-nav .nav-date {
+  color: #e0dfdd;
+  right: 0vw;
+  position: absolute;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .lol-nav:after {
   content: "";
@@ -23,6 +61,16 @@ html, body {
 .lol-nav[open=false] {
   width: 0.01vw;
   box-shadow: none;
+}
+.lol-nav[open=false] .nav-apps {
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+}
+.lol-nav[open=false] .nav-date {
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
 }
 .lol-nav[open=false] .gem {
   width: 8vh;
@@ -38,15 +86,6 @@ html, body {
   left: -8vh;
   border: transparent solid 4vh;
   border-right-color: #242424;
-}
-
-.lol-nav .gem {
-  width: 8vw;
-  height: 6vh;
-  top: 1vh;
-  cursor: pointer;
-  position: absolute;
-  left: -8vh;
 }
 
 /*# sourceMappingURL=nav.css.map */

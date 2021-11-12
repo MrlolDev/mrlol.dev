@@ -21,69 +21,7 @@ body {
 html, body {
     overflow-x: hidden;
 }
-/* App window */
-.l-app {
-    position:  absolute;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
-    &[open="false"] {
-        visibility: hidden;
-        opacity: 0;
-        z-index: -1;
-    }
-    &[restore="true"] {
-        width: 50vw;
-        height: 50vh;
-    }
-    &[restore="false"] {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width: 90vw;
-        height: 90vh;
-    }
-    .l-app-content {
-        width: 100%;
-        color: #000000;
-        height: 100%;
-        border-bottom-left-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-        background: $white;
-        .l-app-iframe {
-            width: 100%;
-            height: 100%;
-        }
-    }
-    .l-app-nav {
-        width: 100%;
-        background: $black-grey;
-        font-size: 1.25rem;
-        border-radius: .25rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        p {
-            margin: 0;
-            margin-left: .25vw;
-        }
-        .icons {
-            display: flex;
-            align-items: center;
-            i {
-                cursor: pointer;
-                transition: all 0.3s;
-                color: $light-grey;
-            margin-right: .5vw;
-                &:hover {
-                    color: $white;
-                }
-            }
-        }
-    }
-}
+
 /* Card */
 .card {
     border-radius: .5rem;
@@ -167,21 +105,18 @@ html, body {
         flex-direction: column;
         .os-app {
             width: 14vw;
-            height: 14vw;
+            height: fit-content;
             display: flex;
             cursor: pointer;
             flex-direction: column;
             align-items: center;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: -moz-none;
-            -o-user-select: none;
             user-select: none;
+            margin-bottom: 2vh;
             &[selected="true"] {
                 &:before {
                     content: "";
+                    margin-top:-1vw;
                     position: absolute;
-                    top: -1vw;
                     border: 1px solid $color;
                     width: 10vw;
                     opacity: 0.3;
@@ -199,5 +134,84 @@ html, body {
                 margin-top: .1vh;
             }
         }
+    }
+}
+/* App window */
+.l-app {
+    position:  absolute;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    &[open="false"] {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+    }
+    &[restore="true"] {
+        width: 50vw;
+        height: 50vh;
+    }
+    &[restore="false"] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 90vw;
+        height: 90vh;
+    }
+    .l-app-content {
+        width: 100%;
+        color: #000000;
+        height: 100%;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        background: $white;
+        .l-app-iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .l-app-nav {
+        width: 100%;
+        background: $black-grey;
+        font-size: 1.25rem;
+        border-radius: .25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+            margin: 0;
+            margin-left: .25vw;
+        }
+        .icons {
+            display: flex;
+            align-items: center;
+            i {
+                cursor: pointer;
+                transition: all 0.3s;
+                color: $light-grey;
+            margin-right: .5vw;
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+/* Buttons */
+.l-btn {
+    border-radius: .5rem;
+    padding: .5rem;
+    color: $grey;
+    &.primary {
+        background: $color;
+        &:hover {
+            background: $light-color;
+        }
+    }
+    &:hover {
+        color: $white;
     }
 }
