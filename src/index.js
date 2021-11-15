@@ -101,6 +101,12 @@ app.get("/load/:p", async (req, res) => {
   const { p } = req.params;
   res.render("animations/loader");
 });
+app.get("/file/:id", async (req, res) => {
+  var id = req.params.id;
+  var file = await Files.findOne({ _id: id }).exec();
+  if(!file) return res.sendStatus(404);
+  res.sendFile(path.join(__dirname, `/public/${file.path}`));
+})
 
 // Admin routes
 app.get("/admin/apps", secured, async (req, res) => {
@@ -159,8 +165,7 @@ app.post("/admin/app/add", secured, async (req, res) => {
   res.redirect("/admin/apps");
 });
 // Auth routes
-app.get(
-  "/auth/login",
+app.get("/auth/login",
   passport.authenticate("auth0", {
     scope: "openid email profile",
     state: { customState: "custom" },
@@ -191,6 +196,38 @@ app.get("/auth/logout", (req, res) => {
   req.logOut();
   res.redirect("/");
 });
+app.post("/auth/background", secured, (req, res) => {
+  var sampleFile;
+  var uploadPath;
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send("No files were uploaded.");
+  }
+  sampleFile = req.files.background;
+  var key = genCustom(64, false, true, true, false);
+  uploadPath = __dirname + "/public/files/" + key + sampleFile.name;
+  if (!sampleFile.mimetype.includes("image/")) {
+    removeFile(req.file.path);
+    req.json({ error: 'Background must be an image file.' });
+    return;
+  }
+  sampleFile.mv(uploadPath, async function (err) {
+    if (err) return res.status(500).send(err);
+    const os = await OS.findOne({ _id: req.user.id }).exec();
+    os.background = `/files/${key + sampleFile.name}`;
+    os.save();
+    var newFile = new Files({
+      _id: key,
+      date: Date.now(),
+      path: "/files/" + key + sampleFile.name,
+      originalname: sampleFile.name,
+      mimetype: sampleFile.mimetype,
+      size: sampleFile.size,
+      user: req.user.id,
+    });
+    newFile.save();
+  });
+  res.redirect('/os')
+})
 
 // functions
 async function checkAdmin(id) {

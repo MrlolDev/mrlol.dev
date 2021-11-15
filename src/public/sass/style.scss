@@ -141,8 +141,18 @@ html, body {
     position:  absolute;
     z-index: 1000;
     display: flex;
+    user-select: none;
     flex-direction: column;
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    .resizer {
+        width: 10px;
+        height: 10px;
+        cursor: se-resize;
+        background: red;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
     &[open="false"] {
         visibility: hidden;
         opacity: 0;
@@ -150,6 +160,7 @@ html, body {
     }
     &[restore="true"] {
         width: 50vw;
+        resize: both;
         height: 50vh;
     }
     &[restore="false"] {
@@ -176,6 +187,7 @@ html, body {
         width: 100%;
         background: $black-grey;
         font-size: 1.25rem;
+        cursor: move;
         border-radius: .25rem;
         display: flex;
         align-items: center;

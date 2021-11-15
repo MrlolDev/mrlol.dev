@@ -17,10 +17,13 @@ $light-color:#78ddf8;
         display: flex;
         flex-direction: column;
         .cg {
-            width: 80%;
             background: $dark-grey;
             border-radius: 0.5rem;
             color: $white;
+            &.background {
+                width: 65%;
+                height: 40%;
+            }
             .cg-title {
                 text-align: left;
                 position: relative;
@@ -34,6 +37,16 @@ $light-color:#78ddf8;
                 }
                 &.row {
                     flex-direction: row;
+                }
+                .cg-bg {
+                    margin-bottom: 2vh;
+                    margin-left: 5%;
+                    width: 90%;
+                    img {
+                        width: 213px;
+                        height: 120px;
+                    }
+
                 }
             }
         }

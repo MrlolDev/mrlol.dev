@@ -2,7 +2,6 @@ const localStorage = window.localStorage
 var selectedApp = null
 
 function openApp (app) {
-  console.log(app)
   renderApp(app)
   var navapp = document.getElementById(`nav-${app}`)
   navapp.attributes.open.value = "true"
@@ -92,3 +91,4 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+

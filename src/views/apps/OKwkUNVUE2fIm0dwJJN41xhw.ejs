@@ -1,6 +1,6 @@
 <div class="l-app" open="false" id="app-OKwkUNVUE2fIm0dwJJN41xhw" restore="true"onclick="dragElement(this)">
     <header class="l-app-nav">
-        <p>Configuración</p>
+        <p>Configuration</p>
         <div class="icons">
             <i class="far fa-window-maximize" onclick="maximizeApp('OKwkUNVUE2fIm0dwJJN41xhw', this)"></i>
             <i class="fas fa-times" onclick="closeApp('OKwkUNVUE2fIm0dwJJN41xhw')"></i>
@@ -9,9 +9,15 @@
     <div class="l-app-content">
         <div class="configs">
             <div class="cg background">
-                <h3 class="cg-title">Fondo de pantalla</h3>
+                <h3 class="cg-title">Background</h3>
                 <div class="cg content">
-                    
+                    <div class="cg-bg">
+                        <img src="<%=os.background%>" >
+                        <form action="/auth/background" method="POST" enctype="multipart/form-data">
+                            <input type="file" accept="image/*" name="background" required>
+                            <button class="l-btn primary" type="submit">Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

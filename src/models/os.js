@@ -5,6 +5,6 @@ const eSchema = new Schema({
   _id: String,
   apps: Array,
   background: String,
-  theme: String
+  theme: String,
 })
 module.exports = mongoose.model('os', eSchema)
