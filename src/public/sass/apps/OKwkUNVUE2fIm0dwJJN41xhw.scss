@@ -20,9 +20,14 @@ $light-color:#78ddf8;
             background: $dark-grey;
             border-radius: 0.5rem;
             color: $white;
+            margin-bottom: 0.5vh;
             &.background {
                 width: 65%;
                 height: 40%;
+            }
+            &.off {
+                width: fit-content;
+                padding: 0.5rem
             }
             .cg-title {
                 text-align: left;
@@ -47,6 +52,17 @@ $light-color:#78ddf8;
                         height: 120px;
                     }
 
+                    &:hover {
+                        &:before {
+                            content: '';
+                            width: 213px;
+                            height: 120px;
+                            cursor: pointer;
+                            background: $dark-grey;
+                            opacity: 0.5;
+                            position: absolute;
+                        }
+                    }
                 }
             }
         }

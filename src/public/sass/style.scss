@@ -9,6 +9,8 @@ $black-grey: #242424;
 $dark-grey: #2b2b2b;
 $color: #3b9bd7;
 $light-color:#78ddf8;
+$color-red: #D73B3B;
+$light-color-red: #F87878;
 
 body {
     background: #2062af;  /* fallback for old browsers */
@@ -24,7 +26,7 @@ html, body {
 
 /* Card */
 .card {
-    border-radius: .5rem;
+    border-radius: .25rem;
     background: $dark-grey;
     overflow: hidden;
     padding: .5rem .5rem;
@@ -74,6 +76,7 @@ html, body {
     width: fit-content;
     height: fit-content;
     color: $light-grey;
+    text-decoration: none;
     transition: all 0.2s;
     cursor: pointer;
     outline: none;
@@ -89,8 +92,31 @@ html, body {
     }
     &.primary {
         background: linear-gradient(to right,  $light-color, $color); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        &.border {
+            background: none;
+            border: 2px solid $light-color;
+            color: $light-color;
+            &:hover {
+                border: 2px solid $white;
+                color: $white;
+                background: $light-color;
+            }
+        }
     }
-  
+    &.danger {
+        background: linear-gradient(to right,  $light-color-red, $color-red); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        &.border {
+            background: none ;
+            border: 2px solid $light-color-red;
+            color: $light-color-red;
+            &:hover {
+                border: 2px solid $white;
+                color: $white;
+                background: $light-color-red;
+            }
+        }
+    }
+    
 }
 /* Apps Desktop */
 .os-apps {
@@ -118,20 +144,21 @@ html, body {
                     margin-top:-1vw;
                     position: absolute;
                     border: 1px solid $color;
-                    width: 10vw;
+                    width: 8vw;
                     opacity: 0.3;
-                    height: 10vw;
+                    height: 8vw;
                     background: $light-color;
                 }
             }
             img {
                 border-radius: 0.5rem;
-                width: 6vw;
+                width: 4vw;
                 box-shadow: 1px 1px 15px 5px rgba(0,0,0,0.1);
-                height: 6vw;
+                height: 4vw;
             }
             p {
                 margin-top: .1vh;
+                text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
             }
         }
     }
@@ -144,6 +171,12 @@ html, body {
     user-select: none;
     flex-direction: column;
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
     .resizer {
         width: 10px;
         height: 10px;
@@ -177,7 +210,6 @@ html, body {
         height: 100%;
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
-        background: $white;
         .l-app-iframe {
             width: 100%;
             height: 100%;
@@ -185,16 +217,19 @@ html, body {
     }
     .l-app-nav {
         width: 100%;
-        background: $black-grey;
         font-size: 1.25rem;
-        cursor: move;
-        border-radius: .25rem;
+        background: rgba( 255, 255, 255, 0.25 );;
+        border-radius: .2rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         p {
             margin: 0;
             margin-left: .25vw;
+            font-size: 1rem;
+            color: $dark-grey;
         }
         .icons {
             display: flex;
@@ -202,10 +237,10 @@ html, body {
             i {
                 cursor: pointer;
                 transition: all 0.3s;
-                color: $light-grey;
-            margin-right: .5vw;
+                color: $dark-grey;
+                margin-right: .5vw;
                 &:hover {
-                    color: $white;
+                    color: $dark-grey;
                 }
             }
         }
@@ -216,6 +251,7 @@ html, body {
 .l-btn {
     border-radius: .5rem;
     padding: .5rem;
+    font-size: .8rem;
     color: $grey;
     &.primary {
         background: $color;

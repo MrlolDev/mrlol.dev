@@ -2,6 +2,7 @@ const passport = require('passport')
 const Auth0Strategy = require('passport-auth0')
 const Users = require('../models/users')
 const OS = require('../models/os')
+const Sessions = require('../models/session')
 
 passport.serializeUser((user, done) => {
   done(null, user)

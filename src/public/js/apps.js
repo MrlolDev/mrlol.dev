@@ -1,13 +1,28 @@
 const localStorage = window.localStorage
 var selectedApp = null
 
-function openApp (app) {
+async function LoadSession() {
+  console.log(session)
+  for(let app of session.openApps) {
+    var appDom = document.getElementById(`${app.domID}`)
+    if(!appDom) return
+    appDom.attributes.open.value = app.open
+    if(app.open == 'true') {
+      var navapp = document.getElementById(`nav-${app.id}`)
+      navapp.attributes.open.value = "true"
+    }
+    appDom.style.top = app.y
+    appDom.style.left = app.x
+    appDom.attributes.restore.value = app.restore
+  }
+}
+async function openApp (app) {
   renderApp(app)
   var navapp = document.getElementById(`nav-${app}`)
   navapp.attributes.open.value = "true"
-  localStorage.setItem(`${app}`, 'open')
+  await WS_App(app)
 }
-function maximizeApp (appID, icon) {
+async function maximizeApp (appID, icon) {
   var app = document.getElementById(`app-${appID}`)
   var min = app.attributes.restore.value
   if(min == 'true') {
@@ -18,23 +33,24 @@ function maximizeApp (appID, icon) {
     icon.className = "far fa-window-maximize"
     app.attributes.restore.value = "true"
   }
+  await WS_App(appID)
 }
-function closeApp (app) {
+async function closeApp (app) {
   var appDom = document.getElementById(`app-${app}`)
   appDom.attributes.open.value = 'false';
   var navapp = document.getElementById(`nav-${app}`)
   navapp.attributes.open.value = "false"
-  localStorage.removeItem(`${app}`)
+  await WS_App(app)
 }
 function renderApp (app) {
   var appDom = document.getElementById(`app-${app}`)
   appDom.attributes.open.value='true'
 }
-function selectApp(app) {
+async function selectApp(app) {
     if(app.attributes.selected.value == 'true') {
       app.attributes.selected.value = 'false';
       selectedApp = null;
-      openApp(app.id)
+      await openApp(app.id)
     } else {
       app.attributes.selected.value = 'true';
       selectedApp = app;
@@ -44,18 +60,17 @@ function unSelectApp(app) {
   app.attributes.selected.value = 'false';
 }
 document.addEventListener('click', function(event) {
-  if(selectedApp == null) return
-  var isClickInsideElement = selectedApp.contains(event.target);
-  if (!isClickInsideElement) {
-    selectedApp.attributes.selected.value = 'false';
+  if(selectedApp !== null) {
+    var isClickInsideElement = selectedApp.contains(event.target);
+    if (!isClickInsideElement) {
+      selectedApp.attributes.selected.value = 'false';
+    }
   }
 });
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if(elmnt.tag =='input') return console.log('test')
   if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
   } 
   function dragMouseDown(e) {
@@ -65,11 +80,15 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
+    document.addEventListener("mouseup", async() => {
+      console.log(`stop moving ${elmnt.id.replace('app-', '')}`)
+      await WS_App(elmnt.id.replace('app-', ''))
+    })
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
   }
 
-  function elementDrag(e) {
+  async function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
     // calculate the new cursor position:

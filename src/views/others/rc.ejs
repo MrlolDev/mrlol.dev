@@ -7,6 +7,7 @@
   function newPage(page) {
       window.open(page.attributes.href.value)
   }
+  var showingMenu = false;
     var nowSubMenu = null;
           if (document.addEventListener) {
     document.addEventListener('contextmenu', function(e) {
@@ -14,8 +15,10 @@
       e.preventDefault();
     }, false);
     document.addEventListener('click', function(e) {
-      removeMenu()
+      if(showingMenu == true) {
+        removeMenu()
       e.preventDefault();
+      }
     }, false);
   } else {
     document.attachEvent('oncontextmenu', function() {
@@ -66,6 +69,7 @@
   
   }
   function drawMenu(x, y) {
+    showingMenu = true
       var menu = document.querySelector("menu#rcMenu")
       console.log(menu)
       menu.attributes.active.value = "true"
@@ -73,6 +77,7 @@
       menu.style.top = (y - 10)+"px";
   }
   function removeMenu() {
+    showingMenu = false
       var menu = document.querySelector("menu#rcMenu")
       menu.attributes.active.value = "false"
       if(nowSubMenu != null) {

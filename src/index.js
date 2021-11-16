@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const path = require("path");
 const database = require("./config/db.js");
 const ms = require("ms");
+const fs = require("fs");
 const { genCustom } = require("@teamloick/key.gen");
 const expressSession = require("express-session");
 const passport = require("passport");
@@ -28,12 +29,12 @@ console = new Captain.Console({
 const OS = require("./models/os");
 const Apps = require("./models/apps");
 const Files = require("./models/files");
+const Sessions = require("./models/session");
 // MiddleWares & settings
 app.use(cors());
 app.set("port", process.env.PORT);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(require("./routes/router"));
@@ -79,23 +80,47 @@ const io = require("socket.io")(server, {
 });
 io.on("connection", (socket) => {
   socket.on("disconnect", async () => {
-    socket.emit("disconnected");
+    console.log("connection disconnected")
   });
   socket.on("user-connected", async (id) => {
     console.log(`${id} connected`);
   });
+  socket.on("test", async (msg) => {
+    console.log(msg);
+  });
+  socket.on('app-status', async (user, app) => {
+    console.log(app)
+    var session = await Sessions.findOne({ _id: user }).exec();
+    if(!session) return;
+    var appStatus = session.openApps.find(x => x.id === app.id);
+    if(!appStatus) {
+      session.openApps.push(app);
+    } else {
+      session.openApps.splice(session.openApps.findIndex(x => x.id === app.id), 1);
+      session.openApps.push(app);
+    }
+    session.save()
+  })
 });
 // routes
 // Normal routes
 app.get("/os", secured, async (req, res) => {
   const os = await OS.findOne({ _id: req.user.id }).exec();
+  await installDefaultApps(req.user.id);
+  var session = await Sessions.findOne({_id: req.user.id}).exec();
+  if(!session) {
+    const newSession = new Sessions({
+      _id: req.user.id,
+      openApp: [],
+    })
+    newSession.save()
+  }
   var apps = []
   for(var a of os.apps) {
     var app = await Apps.findOne({_id: a}).exec();
     apps.push(app);
   }
-  console.log(apps)
-  res.render("os", { userID: req.user.id, os: os, apps: apps });
+  res.render("os", { userID: req.user.id, os: os, apps: apps,session:session });
 });
 app.get("/load/:p", async (req, res) => {
   const { p } = req.params;
@@ -104,7 +129,11 @@ app.get("/load/:p", async (req, res) => {
 app.get("/file/:id", async (req, res) => {
   var id = req.params.id;
   var file = await Files.findOne({ _id: id }).exec();
-  if(!file) return res.sendStatus(404);
+  if(!file) {
+    var fileByPath = await Files.findOne({ path: id }).exec();
+    if(!fileByPath) return res.sendStatus(404);
+    res.sendFile(path.join(__dirname, `/public/${fileByPath.path}`));
+  }
   res.sendFile(path.join(__dirname, `/public/${file.path}`));
 })
 
@@ -135,7 +164,8 @@ app.post("/admin/app/add", secured, async (req, res) => {
   }
   sampleFile = req.files.icon;
   var key = genCustom(64, false, true, true, false);
-  uploadPath = __dirname + "/public/files/" + key + sampleFile.name;
+  uploadPath = __dirname + "/public/files/app/" + key + sampleFile.name;
+  var relativePath =`/files/app/${key + sampleFile.name}`
   if (!sampleFile.mimetype.includes("image/")) {
     removeFile(req.file.path);
     req.json({ error: true, message: "El icono debe ser una imágen" });
@@ -146,7 +176,7 @@ app.post("/admin/app/add", secured, async (req, res) => {
     var newFile = new Files({
       _id: key,
       date: Date.now(),
-      path: "/files/" + key + sampleFile.name,
+      path: relativePath,
       originalname: sampleFile.name,
       mimetype: sampleFile.mimetype,
       size: sampleFile.size,
@@ -158,7 +188,7 @@ app.post("/admin/app/add", secured, async (req, res) => {
     _id: id,
     name: req.body.name,
     file: "./",
-    icon: "/files/" + key + sampleFile.name,
+    icon: relativePath,
     os: osList,
   });
   newApp.save();
@@ -192,7 +222,12 @@ app.get("/auth/callback", (req, res, next) => {
     });
   })(req, res, next);
 });
-app.get("/auth/logout", (req, res) => {
+app.get("/auth/logout", async (req, res) => {
+  var session = await Sessions.findOne({ _id: req.user.id }).exec();
+  if(session) {
+    session.openApps = [];
+    session.save();
+  }
   req.logOut();
   res.redirect("/");
 });
@@ -204,7 +239,8 @@ app.post("/auth/background", secured, (req, res) => {
   }
   sampleFile = req.files.background;
   var key = genCustom(64, false, true, true, false);
-  uploadPath = __dirname + "/public/files/" + key + sampleFile.name;
+  uploadPath = __dirname + "/public/files/bg/" + key + sampleFile.name;
+  var relativePath =`/files/bg/${key + sampleFile.name}`
   if (!sampleFile.mimetype.includes("image/")) {
     removeFile(req.file.path);
     req.json({ error: 'Background must be an image file.' });
@@ -213,12 +249,19 @@ app.post("/auth/background", secured, (req, res) => {
   sampleFile.mv(uploadPath, async function (err) {
     if (err) return res.status(500).send(err);
     const os = await OS.findOne({ _id: req.user.id }).exec();
-    os.background = `/files/${key + sampleFile.name}`;
+    if(os.background.includes("/files/bg")) {
+      var oldFile = await Files.findOne({ path: os.background }).exec();
+      if(oldFile) {
+        removeFile(path.join(__dirname, `public${oldFile.path}`));
+        oldFile.remove();
+      }
+    }
+    os.background = relativePath;
     os.save();
     var newFile = new Files({
       _id: key,
       date: Date.now(),
-      path: "/files/" + key + sampleFile.name,
+      path: relativePath,
       originalname: sampleFile.name,
       mimetype: sampleFile.mimetype,
       size: sampleFile.size,
@@ -226,7 +269,9 @@ app.post("/auth/background", secured, (req, res) => {
     });
     newFile.save();
   });
-  res.redirect('/os')
+  setTimeout(() => {
+    res.redirect('/os')
+  }, 250);
 })
 
 // functions
@@ -235,3 +280,33 @@ async function checkAdmin(id) {
   if (user.isAdmin === false) return false;
   return true;
 }
+async function installDefaultApps(id) {
+  var defaultAppsID = ['OKwkUNVUE2fIm0dwJJN41xhw', '2AIpQDUhy8eSQrAay4pwiVAR','t61y9kztDqZsZq3lH2UYJ6wK']
+  var os = await OS.findOne({ _id: id }).exec();
+  var defaultInstalled = 0;
+  for(defaultApp of defaultAppsID) {
+    for(let ap of os.apps) {
+      if(ap === defaultApp) {
+        defaultInstalled++;
+      }
+    }
+  }
+  if(defaultInstalled === 3) return;
+  for(defaultApp of defaultAppsID) {  
+      var isInstalled = false;
+      if(os.apps.find(x => x === defaultApp)) {
+        isInstalled = true;
+      }
+      if(isInstalled === false) {
+        os.apps.push(defaultApp);
+      }
+  }
+  os.save();
+}
+var removeFile = function (filePath) {
+  try {
+    fs.unlinkSync(filePath);
+  } catch (err) {
+    return console.log(err);
+  }
+};

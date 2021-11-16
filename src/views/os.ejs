@@ -9,16 +9,15 @@
     <link rel="stylesheet" href="/css/others/nav.css">
     <link rel="stylesheet" href="/css/others/rc.css">
     <% apps.forEach(app => {%>
-    <link rel="stylesheet" href="/css/apps/<%=app._id%>.css">
-
+        <link rel="stylesheet" href="/css/apps/<%=app._id%>.css">
     <%})%>
     <script>
         var userID = `<%-userID%>`
     </script>
-    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="http://localhost:3404/socket.io/socket.io.js"></script>
     <script defer src="/js/socket.js"></script>
 </head>
-<body>
+<body onload="LoadSession()">
     <% apps.forEach(app => {%>
         <%- include('apps/' + app._id+'.ejs') %>
     <%})%>
@@ -26,7 +25,7 @@
     <%- include('apps/desktop.ejs') %>
     <%- include('others/nav.ejs') %>
     <script>
-
+    var session = <%- session%>;
     document.getElementsByTagName("body")[0].style = "background: url(<%=os.background%>); background-repeat: no-repeat; background-size: cover;" 
     </script>
     <script src="/js/apps.js"></script>
