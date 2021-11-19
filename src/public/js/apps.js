@@ -80,10 +80,7 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
-    document.addEventListener("mouseup", async() => {
-      console.log(`stop moving ${elmnt.id.replace('app-', '')}`)
-      await WS_App(elmnt.id.replace('app-', ''))
-    })
+
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
   }

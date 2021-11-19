@@ -1,12 +1,47 @@
 <div class="l-app" open="false" id="app-t61y9kztDqZsZq3lH2UYJ6wK" restore="true"onclick="dragElement(this)" >
     <header class="l-app-nav" id="app-t61y9kztDqZsZq3lH2UYJ6wKheader">
-        <p>FileSystem</p>
+        <p>File system</p>
         <div class="icons">
             <i class="far fa-window-maximize" onclick="maximizeApp('t61y9kztDqZsZq3lH2UYJ6wK', this)"></i>
             <i class="fas fa-times" onclick="closeApp('t61y9kztDqZsZq3lH2UYJ6wK')"></i>
         </div>
     </header>
     <div class="l-app-content">
-        <iframe src="" frameborder="0" class="l-app-iframe"></iframe>
+        <div class="cloud-nav">
+            <div class="cloud-nav-item">
+                <p>Upload File</p>
+            </div>
+            <div class="cloud-nav-item" disabled>
+                <p>Edit selected file</p>
+            </div>
+            <div class="cloud-nav-item" disabled>
+                <p>Delete selected file</p>
+            </div>
+        </div>
+        <div class="cloud-content">
+            <div class="cloud-routes col">
+                <div class="cloud-route box-lg-12"sub=1 id="user"> 
+                    <p>test</p>
+                </div>
+                <div class="cloud-route box-lg-12" sub=2 id="test">
+                    <p>test</p>
+                </div>
+            </div>
+            <div class="cloud-files">
+
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    function loadSubMenus() {
+        var getRoutes = document.querySelectorAll('.cloud-route')
+        console.log(getRoutes)
+        for(var route of getRoutes) {
+            var routeDom = document.getElementById(route.id)
+            var margin = `${route.attributes.sub.value * 6}%`
+            routeDom.style.marginLeft  = margin
+        }
+    }
+    loadSubMenus()
+</script>

@@ -8,6 +8,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
+    "express-useragent": "^1.0.15",
     "mongoose": "^6.0.11",
     "mongoose-regex-search": "^0.9.0",
     "morgan": "^1.10.0",

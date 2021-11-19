@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const path = require("path");
+const useragent = require('express-useragent');
 const database = require("./config/db.js");
 const ms = require("ms");
 const fs = require("fs");
@@ -30,8 +31,10 @@ const OS = require("./models/os");
 const Apps = require("./models/apps");
 const Files = require("./models/files");
 const Sessions = require("./models/session");
+const apps = require("./models/apps");
 // MiddleWares & settings
 app.use(cors());
+app.use(useragent.express());
 app.set("port", process.env.PORT);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -78,24 +81,32 @@ const io = require("socket.io")(server, {
     credentials: true,
   },
 });
-io.on("connection", (socket) => {
-  socket.on("disconnect", async () => {
+io.on("connection", (socket) => { // When a sockets connects
+  socket.on("disconnect", async () => { // When a user disconnects
     console.log("connection disconnected")
   });
-  socket.on("user-connected", async (id) => {
+  socket.on("user-connected", async (id) => { // When a user connects
+    var session = await Sessions.findOne({ _id: id }).exec();
+    session.socket = socket.id; // Set the socket id
+    session.save();
     console.log(`${id} connected`);
   });
-  socket.on("test", async (msg) => {
+  socket.on("test", async (msg) => { // Test sockets event
     console.log(msg);
   });
-  socket.on('app-status', async (user, app) => {
-    console.log(app)
-    var session = await Sessions.findOne({ _id: user }).exec();
+  socket.on('get-apps', async () => { // Front send this to get the apps
+    var session = await Sessions.findOne({ socket: socket.id }).exec();
     if(!session) return;
-    var appStatus = session.openApps.find(x => x.id === app.id);
-    if(!appStatus) {
+    var apps = session.openApps
+    socket.emit('receive-apps', apps);
+  })
+  socket.on('app-status', async (user, app) => { // Front send this to set app info
+    var session = await Sessions.findOne({ _id: user }).exec();
+    if(!session) return; // If the user is not connected well
+    var appStatus = session.openApps.find(x => x.id === app.id); // Find the app
+    if(!appStatus) { // If the app is not found create the object
       session.openApps.push(app);
-    } else {
+    } else { // If the app is found update the object
       session.openApps.splice(session.openApps.findIndex(x => x.id === app.id), 1);
       session.openApps.push(app);
     }
@@ -105,32 +116,29 @@ io.on("connection", (socket) => {
 // routes
 // Normal routes
 app.get("/os", secured, async (req, res) => {
-  const os = await OS.findOne({ _id: req.user.id }).exec();
-  await installDefaultApps(req.user.id);
-  var session = await Sessions.findOne({_id: req.user.id}).exec();
-  if(!session) {
+  const os = await OS.findOne({ _id: req.user.id }).exec(); // get os object
+  await installDefaultApps(req.user.id); // install default apps
+  var session = await Sessions.findOne({_id: req.user.id}).exec(); // get session object
+  if(!session) { // If there isn't a session create one
     const newSession = new Sessions({
       _id: req.user.id,
+      socket: '',
       openApp: [],
     })
     newSession.save()
   }
-  var apps = []
+  var apps = [] // Create an empty array
   for(var a of os.apps) {
     var app = await Apps.findOne({_id: a}).exec();
-    apps.push(app);
+    apps.push(app); // fil the array with the apps
   }
-  res.render("os", { userID: req.user.id, os: os, apps: apps,session:session });
+  res.render("os", { userID: req.user.id, os: os, apps: apps,session:session, isMobile: req.useragent.isMobile });
 });
-app.get("/load/:p", async (req, res) => {
-  const { p } = req.params;
-  res.render("animations/loader");
-});
-app.get("/file/:id", async (req, res) => {
-  var id = req.params.id;
-  var file = await Files.findOne({ _id: id }).exec();
-  if(!file) {
-    var fileByPath = await Files.findOne({ path: id }).exec();
+app.get("/file/:id", async (req, res) => { 
+  var id = req.params.id; 
+  var file = await Files.findOne({ _id: id }).exec(); // get file object
+  if(!file) { // If the file is not found
+    var fileByPath = await Files.findOne({ path: id }).exec(); // get file object by path
     if(!fileByPath) return res.sendStatus(404);
     res.sendFile(path.join(__dirname, `/public/${fileByPath.path}`));
   }
@@ -138,9 +146,9 @@ app.get("/file/:id", async (req, res) => {
 })
 
 // Admin routes
-app.get("/admin/apps", secured, async (req, res) => {
-  const admin = await checkAdmin(req.user.id);
-  if (admin === false) return res.redirect("/os");
+app.get("/admin/apps", secured, async (req, res) => { 
+  const admin = await checkAdmin(req.user.id); // Check if the user is admin
+  if (admin === false) return res.redirect("/os"); // If the user is not admin redirect to os
   var apps = await Apps.find().exec()
   res.render("admin/apps", {apps});
 });
@@ -273,6 +281,12 @@ app.post("/auth/background", secured, (req, res) => {
     res.redirect('/os')
   }, 250);
 })
+
+// App routes
+  //Cloud routes
+    app.post("/app/cloud/file/add", secured, async (req, res) => {
+      
+    })
 
 // functions
 async function checkAdmin(id) {
