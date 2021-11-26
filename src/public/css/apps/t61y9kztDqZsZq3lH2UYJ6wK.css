@@ -57,5 +57,20 @@
   width: 80%;
   height: 100%;
 }
+.l-app-content .cloud-content .cloud-files .cloud-file {
+  margin-left: 1vw;
+  margin-top: 1vh;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #F2F2F2;
+}
+.l-app-content .cloud-content .cloud-files .cloud-file .file-icon {
+  font-size: 4.5rem;
+}
+.l-app-content .cloud-content .cloud-files .cloud-file .file-name {
+  margin-top: -1vh;
+}
 
 /*# sourceMappingURL=t61y9kztDqZsZq3lH2UYJ6wK.css.map */
