@@ -1,5 +1,0 @@
-// Terminal 1
-npx nodemon
-
-// Terminal 2
-sass -w public/sass:public/css
