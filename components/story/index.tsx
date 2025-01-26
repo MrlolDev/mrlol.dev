@@ -2,15 +2,17 @@ import Link from "next/link";
 
 export default function Story() {
   return (
-    <div className="flex flex-col gap-4 w-full max-w-6xl items-center justify-center">
+    <div className="flex flex-col gap-4 w-full max-w-6xl items-center  justify-start md:justify-center px-4 sm:px-6 lg:px-8">
       <Link
         href="/"
-        className="self-start mb-4 px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
+        className="self-start mb-4 px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
       >
         ← Back
       </Link>
-      <h1 className="text-6xl font-normal">My Story</h1>
-      <p className="text-lg font-normal">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal text-center">
+        My Story
+      </h1>
+      <p className="text-base sm:text-lg font-normal max-w-prose max-h-[70vh] overflow-y-auto">
         I didn&apos;t going to try to be brief and concise and tell you a little
         about me. I am <strong>born and raised in Spain</strong>. My mom is from
         Brazil and my dad is from the town. Because of this, I am bilingual and
