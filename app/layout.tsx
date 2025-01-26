@@ -17,6 +17,29 @@ export const metadata: Metadata = {
   description:
     "Personal portfolio and blog of Leonardo Ollero (MrlolDev) - Software Developer",
   metadataBase: new URL("https://mrlol.dev"),
+  icons: {
+    icon: "/pfp/4.png",
+    shortcut: "/pfp/4.png",
+    apple: "/pfp/4.png",
+  },
+  keywords: [
+    "Leonardo Ollero",
+    "MrlolDev",
+    "Software Developer",
+    "Web Developer",
+    "Frontend Developer",
+    "Full Stack Developer",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+  ],
+  authors: [
+    {
+      name: "Leonardo Ollero",
+      url: "https://mrlol.dev",
+    },
+  ],
   openGraph: {
     title: "Leonardo Ollero | Software Developer",
     description:
@@ -25,12 +48,22 @@ export const metadata: Metadata = {
     siteName: "Leonardo Ollero",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/pfp/4.png",
+        width: 800,
+        height: 800,
+        alt: "Leonardo Ollero",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Leonardo Ollero | Software Developer",
     description:
       "Personal portfolio and blog of Leonardo Ollero (MrlolDev) - Software Developer",
+    creator: "@mrloldev",
+    images: ["/pfp/4.png"],
   },
   robots: {
     index: true,
