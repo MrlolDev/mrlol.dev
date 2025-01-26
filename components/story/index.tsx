@@ -11,7 +11,7 @@ export default function Story() {
       </Link>
       <h1 className="text-6xl font-normal">My Story</h1>
       <p className="text-lg font-normal">
-        I&apos;m going to try to be brief and concise and tell you a little
+        I didn&apos;t going to try to be brief and concise and tell you a little
         about me. I am <strong>born and raised in Spain</strong>. My mom is from
         Brazil and my dad is from the town. Because of this, I am bilingual and
         I can speak both <strong>Spanish and Portuguese fluently</strong>. I
@@ -61,8 +61,8 @@ export default function Story() {
         was not working well with the bot, we had to do a migration but the new
         developer from Ampere lied and made us lose money, users and a potential
         seed investment (sorry Finn). I had a OpenAI debt and now income since
-        the bot didn't work and I abandoned the project. At this time I started
-        working at{" "}
+        the bot didn&apos;t work and I abandoned the project. At this time I
+        started working at{" "}
         <a
           href="https://getwildfire.gg"
           target="_blank"
@@ -77,10 +77,10 @@ export default function Story() {
         May 2024 I sold my bot as it kept having users and I was not able to
         manage it. I sold the bot to shapes and they managed to keep growing it
         (thanks for keeping my baby alive). On June 2024 I did my first trip
-        "alone" to Madrid with other students from the programme Aditus and had
-        one of the best times of my life(thanks guys). I wrote my essays,
-        achieved a<strong> SAT score of 1450</strong> at the third attempt and
-        now
+        &quot;alone&quot; to Madrid with other students from the programme
+        Aditus and had one of the best times of my life(thanks guys). I wrote my
+        essays, achieved a<strong> SAT score of 1450</strong> at the third
+        attempt and now
         <strong> pursuing admission to top US universities</strong>. On January
         2025 I send all my applications and now I am waiting for decisions.{" "}
         <br />

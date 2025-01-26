@@ -23,7 +23,7 @@ export default function Main() {
           />
         </div>
         <div className="flex flex-row items-baseline gap-2">
-          <h1 className="text-6xl font-normal">I'm</h1>
+          <h1 className="text-6xl font-normal">I&apos;m</h1>
           <h1 className="text-6xl font-normal flex flex-row items-baseline gap-2">
             <div className="w-[300px]">
               <TypewriterEffect
@@ -37,7 +37,7 @@ export default function Main() {
           </h1>
         </div>
         <div className="flex flex-row items-baseline gap-2">
-          <h1 className="text-6xl font-normal">I'm a</h1>
+          <h1 className="text-6xl font-normal">I&apos;m a</h1>
           <div className="w-[450px]">
             <RotatingText words={roles} wordIndex={wordIndex} />
           </div>
