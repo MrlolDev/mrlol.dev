@@ -11,12 +11,12 @@ export default function Story() {
       </Link>
       <h1 className="text-6xl font-normal">My Story</h1>
       <p className="text-lg font-normal">
-        I'm going to try to be brief and concise and tell you a little about me.
-        I am <strong>born and raised in Spain</strong>. My mom is from Brazil
-        and my dad is from the town. Because of this, I am bilingual and I can
-        speak both <strong>Spanish and Portuguese fluently</strong>. I also have
-        been learning english in a private academy for <strong>12 years</strong>{" "}
-        and got my
+        I&apos;m going to try to be brief and concise and tell you a little
+        about me. I am <strong>born and raised in Spain</strong>. My mom is from
+        Brazil and my dad is from the town. Because of this, I am bilingual and
+        I can speak both <strong>Spanish and Portuguese fluently</strong>. I
+        also have been learning english in a private academy for{" "}
+        <strong>12 years</strong> and got my
         <strong> C1 certificate</strong>. I have always been a
         <strong> passionate builder</strong>, when I was a small kid I wanted to
         build rockets. Then while I was at elementary school I got interested in{" "}
