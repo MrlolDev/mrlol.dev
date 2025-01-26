@@ -20,7 +20,7 @@ export default function RotatingText({ words, wordIndex }: RotatingTextProps) {
   return (
     <div className="h-[72px] overflow-hidden">
       <h1
-        className={`text-6xl font-normal text-gray-500 transition-transform duration-300 ease-in-out ${
+        className={`text-4xl md:text-6xl font-normal text-gray-500 transition-transform duration-300 ease-in-out ${
           isTransitioning
             ? "-translate-y-full opacity-0"
             : "translate-y-0 opacity-100"
