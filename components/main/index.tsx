@@ -30,7 +30,7 @@ export default function Main() {
                 words={names}
                 typingSpeed={100}
                 deletingSpeed={50}
-                pauseDuration={1500}
+                pauseDuration={3000}
                 onWordChange={setWordIndex}
               />
             </div>

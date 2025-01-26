@@ -14,7 +14,7 @@ export default function TypewriterEffect({
   words,
   typingSpeed = 100,
   deletingSpeed = 50,
-  pauseDuration = 2500,
+  pauseDuration = 4000,
   onWordChange,
 }: TypewriterEffectProps) {
   const [displayText, setDisplayText] = useState("");
