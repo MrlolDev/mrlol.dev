@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import RotatingImage from "../RotatingImage";
-import TypewriterEffect from "../TypewriterEffect";
-import RotatingText from "../RotatingText";
+import RotatingImage from "./RotatingImage";
+import TypewriterEffect from "./TypewriterEffect";
+import RotatingText from "./RotatingText";
+import Link from "next/link";
 
 const names = ["Mrlol", "Leo", "MrlolDev", "Leonardo"];
 const roles = ["builder", "entrepreneur", "developer", "student"];
@@ -42,12 +43,16 @@ export default function Main() {
           </div>
         </div>
         <div className="flex flex-row items-baseline gap-2">
+          {/** 
           <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-black/50 transition-all duration-300 ease-in-out">
             Check out my projects
           </button>
-          <button className="bg-none border border-black text-black px-4 py-2 rounded-md hover:bg-white hover:text-black transition-all duration-300 ease-in-out">
-            Read my story
-          </button>
+          */}
+          <Link href="/story">
+            <button className="bg-none border border-black text-black px-4 py-2 rounded-md hover:bg-white hover:text-black transition-all duration-300 ease-in-out">
+              Read my story
+            </button>
+          </Link>
         </div>
       </div>
     </>
