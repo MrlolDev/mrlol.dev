@@ -12,6 +12,16 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        "gentle-spin": {
+          "0%": { transform: "rotate(0deg)" },
+          "30%": { transform: "rotate(360deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      animation: {
+        "gentle-spin": "gentle-spin 3s ease-out infinite",
+      },
     },
   },
   plugins: [],
