@@ -13,8 +13,8 @@ export default function Story() {
         My Story
       </h1>
       <p className="text-base sm:text-lg font-normal max-w-prose max-h-[70vh] overflow-y-auto">
-        I didn&apos;t going to try to be brief and concise and tell you a little
-        about me. I am <strong>born and raised in Spain</strong>. My mom is from
+        I am going to try to be brief and concise and tell you a little about
+        me. I am <strong>born and raised in Spain</strong>. My mom is from
         Brazil and my dad is from the town. Because of this, I am bilingual and
         I can speak both <strong>Spanish and Portuguese fluently</strong>. I
         also have been learning english in a private academy for{" "}
