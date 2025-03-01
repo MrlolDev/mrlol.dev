@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { TileLayer, Marker } from "react-leaflet";
-import Image from "next/image";
-import "leaflet/dist/leaflet.css";
-import { Icon } from "leaflet";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import BackButton from "../ui/BackButton";
+import "leaflet/dist/leaflet.css";
 
 const locations = [
   {
@@ -132,23 +130,47 @@ const Map = dynamic(
   { ssr: false }
 );
 
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+
 export default function TravelMap() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [icons, setIcons] = useState<{
+    customIcon: any;
+    futureIcon: any;
+  } | null>(null);
 
-  // Updated custom icons with larger size and better visibility
-  const customIcon = new Icon({
-    iconUrl:
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EF4444' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%23EF4444' stroke='white' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='4' fill='white'/%3E%3C/svg%3E",
-    iconSize: [38, 38],
-    iconAnchor: [19, 19],
-  });
+  useEffect(() => {
+    // Import Icon from leaflet only on client side
+    import("leaflet").then(({ Icon }) => {
+      const customIcon = new Icon({
+        iconUrl:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EF4444' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%23EF4444' stroke='white' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='4' fill='white'/%3E%3C/svg%3E",
+        iconSize: [38, 38],
+        iconAnchor: [19, 19],
+      });
 
-  const futureIcon = new Icon({
-    iconUrl:
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366F1' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%236366F1' stroke='white' stroke-width='3' stroke-dasharray='4 2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='white'/%3E%3C/svg%3E",
-    iconSize: [38, 38],
-    iconAnchor: [19, 19],
-  });
+      const futureIcon = new Icon({
+        iconUrl:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366F1' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%236366F1' stroke='white' stroke-width='3' stroke-dasharray='4 2'/%3E%3Ccircle cx='12' cy='12' r='4' fill='white'/%3E%3C/svg%3E",
+        iconSize: [38, 38],
+        iconAnchor: [19, 19],
+      });
+
+      setIcons({ customIcon, futureIcon });
+    });
+  }, []);
+
+  if (!icons) {
+    return null; // Or a loading state
+  }
 
   return (
     <div className="min-h-screen flex flex-col gap-4 sm:gap-8 w-full h-full max-w-7xl mx-auto items-center justify-start py-6 sm:py-12 px-2 sm:px-8">
@@ -196,7 +218,7 @@ export default function TravelMap() {
             <Marker
               key={name}
               position={coordinates as [number, number]}
-              icon={isFuture ? futureIcon : customIcon}
+              icon={isFuture ? icons.futureIcon : icons.customIcon}
               eventHandlers={{
                 click: () => setSelectedLocation(name),
               }}
