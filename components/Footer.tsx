@@ -1,5 +1,6 @@
 import { Github, Instagram, Linkedin, Mail, Twitter } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const socialLinks = [
   {
@@ -29,9 +30,14 @@ const socialLinks = [
   },
 ];
 
-export default function Footer() {
+export default function Footer({ className }: { className?: string }) {
   return (
-    <footer className="fixed bottom-0 w-full py-6 px-4 backdrop-blur-4xl bg-white/10">
+    <footer
+      className={cn(
+        "absolute bottom-0 w-[100vw] py-6 px-4 backdrop-blur-4xl bg-white/10",
+        className
+      )}
+    >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="text-sm text-black">
           © {new Date().getFullYear()} Leonardo Ollero. All rights reserved.

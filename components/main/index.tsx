@@ -42,12 +42,22 @@ export default function Main() {
             <RotatingText words={roles} wordIndex={wordIndex} />
           </div>
         </div>
-        <div className="flex flex-row items-baseline gap-2 justify-center md:justify-start">
+        <div className="flex flex-row items-baseline gap-4 justify-center md:justify-start">
           <Link href="/story">
-            <button className="bg-none border border-black text-black px-4 py-2 rounded-md hover:bg-white hover:text-black transition-all duration-300 ease-in-out">
-              Read my story
+            <button className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-all duration-300 ease-in-out">
+              📖 Read my story
             </button>
           </Link>
+          {[
+            { href: "/projects", text: "View my projects", emoji: "🚀" },
+            { href: "/travels", text: "View my travels", emoji: "✈️" },
+          ].map((link) => (
+            <Link key={link.href} href={link.href}>
+              <button className="bg-transparent border-2 border-gray-800 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-300 ease-in-out">
+                {link.emoji} {link.text}
+              </button>
+            </Link>
+          ))}
         </div>
       </div>
     </>
