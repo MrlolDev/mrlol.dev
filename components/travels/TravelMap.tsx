@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import BackButton from "../ui/BackButton";
 import "leaflet/dist/leaflet.css";
+import { Icon as LeafletIcon } from "leaflet";
 
 const locations = [
   {
@@ -143,8 +144,8 @@ const Marker = dynamic(
 export default function TravelMap() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [icons, setIcons] = useState<{
-    customIcon: any;
-    futureIcon: any;
+    customIcon: LeafletIcon;
+    futureIcon: LeafletIcon;
   } | null>(null);
 
   useEffect(() => {
