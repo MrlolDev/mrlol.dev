@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import { Analytics } from "@vercel/analytics/react";
-import { useEffect } from "react";
 import ViewTransitionsProvider from "@/components/ViewTransitionsProvider";
 
 const geistSans = Geist({
