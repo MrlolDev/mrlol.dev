@@ -160,18 +160,18 @@ export default function Projects() {
   };
 
   return (
-    <div className="h-full flex flex-col gap-6 w-full max-w-6xl mx-auto items-start justify-start py-4 sm:py-8 px-3 sm:px-6 lg:px-8">
+    <div className="h-full flex flex-col gap-4 md:gap-6 w-full max-w-6xl mx-auto items-start justify-start py-4 sm:py-8 px-3 sm:px-6 lg:px-8">
       <BackButton />
       <>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center w-full bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
           My Projects
         </h1>
-        <p className="text-gray-600 text-center mb-4 sm:mb-6 text-sm sm:text-base px-2">
+        <p className="text-gray-600 text-center mb-2 sm:mb-6 text-sm sm:text-base px-2 w-full">
           Featuring some of my most impactful projects that have shaped my
           journey as a developer.
         </p>
       </>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 w-full">
         {projects.map((project) => (
           <div
             key={project.title}
@@ -195,11 +195,11 @@ export default function Projects() {
               </div>
             )}
             <div className="flex justify-between items-start">
-              <h2 className="text-lg sm:text-xl font-medium text-gray-800">
+              <h2 className="text-base sm:text-xl font-medium text-gray-800 pr-16">
                 {project.title}
               </h2>
             </div>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               {expandedProjects.descriptions.has(project.title)
                 ? project.description
                 : project.description.length > 100
@@ -208,7 +208,7 @@ export default function Projects() {
               {project.description.length > 100 && (
                 <button
                   onClick={() => toggleDescription(project.title)}
-                  className="ml-1 text-blue-600 hover:text-blue-800 transition-colors text-sm font-medium"
+                  className="ml-1 text-blue-600 hover:text-blue-800 transition-colors text-xs sm:text-sm font-medium"
                 >
                   {expandedProjects.descriptions.has(project.title)
                     ? "Show less"
@@ -217,31 +217,31 @@ export default function Projects() {
               )}
             </p>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {(expandedProjects.tags.has(project.title)
                 ? project.tags
-                : project.tags.slice(0, 4)
+                : project.tags.slice(0, 3)
               ).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md border border-gray-200"
+                  className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 text-gray-600 text-[10px] sm:text-xs rounded-md border border-gray-200"
                 >
                   {tag}
                 </span>
               ))}
-              {project.tags.length > 4 && (
+              {project.tags.length > 3 && (
                 <button
                   onClick={() => toggleTags(project.title)}
-                  className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md border border-gray-200 hover:bg-gray-200 transition-colors"
+                  className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 text-gray-600 text-[10px] sm:text-xs rounded-md border border-gray-200 hover:bg-gray-200 transition-colors"
                 >
                   {expandedProjects.tags.has(project.title)
                     ? "Show less"
-                    : `+${project.tags.length - 4} more`}
+                    : `+${project.tags.length - 3} more`}
                 </button>
               )}
             </div>
             <div className="flex justify-between items-center mt-auto pt-2">
-              <div className="flex gap-3 sm:gap-4">
+              <div className="flex gap-2 sm:gap-4">
                 {project.github && (
                   <Link
                     href={project.github}

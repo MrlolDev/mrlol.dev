@@ -175,8 +175,10 @@ export default function TravelMap() {
 
   return (
     <div className="min-h-screen flex flex-col gap-4 sm:gap-8 w-full h-full max-w-7xl mx-auto items-center justify-start py-6 sm:py-12 px-2 sm:px-8">
-      <div className="w-full flex flex-col sm:flex-row items-center gap-4 sm:gap-0 sm:justify-between">
-        <BackButton />
+      <div className="w-full flex flex-row items-center gap-4 sm:gap-0 justify-between">
+        <div className="py-2 sm:py-2.5">
+          <BackButton />
+        </div>
         <div className="flex gap-4 sm:gap-6 items-center justify-center text-xs sm:text-sm bg-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center gap-1.5 sm:gap-2">
             <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-red-500 ring-2 ring-red-200"></div>

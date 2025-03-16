@@ -36,3 +36,100 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #e1e1e0 transparent;
 }
+
+/* Base transition settings */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transition groups for different elements */
+::view-transition-old(page-transition),
+::view-transition-new(page-transition) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Entry animations */
+::view-transition-new(page-transition) {
+  animation: enter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exit animations */
+::view-transition-old(page-transition) {
+  animation: exit 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Entry animation keyframes */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2%, 0);
+    filter: blur(4px);
+  }
+
+  50% {
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+/* Exit animation keyframes */
+@keyframes exit {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+
+  50% {
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -2%, 0);
+    filter: blur(4px);
+  }
+}
+
+/* Add smooth transitions for all interactive elements */
+a,
+button {
+  transition: all 0.3s ease;
+}
+
+/* Ensure smooth page transitions work with dark mode */
+@media (prefers-color-scheme: dark) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    background: transparent;
+  }
+}
+
+/* Optional: Add a subtle scale effect to clickable elements */
+a:hover,
+button:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+/* Ensure content doesn't jump during transitions */
+main {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Optimize performance */
+* {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import { Analytics } from "@vercel/analytics/react";
+import { useEffect } from "react";
+import ViewTransitionsProvider from "@/components/ViewTransitionsProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,11 +81,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="view-transition" content="same-origin" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{
+          opacity: 1,
+          transition: "opacity 0.5s ease",
+        }}
       >
-        {children}
-        <Analytics />
+        <ViewTransitionsProvider>
+          <main className="transition-all duration-300 ease-in-out">
+            {children}
+          </main>
+          <Analytics />
+        </ViewTransitionsProvider>
       </body>
     </html>
   );
