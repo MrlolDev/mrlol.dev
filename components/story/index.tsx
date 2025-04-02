@@ -67,7 +67,7 @@ export default function Story() {
       icon: "🌍",
     },
     {
-      date: "2024",
+      date: "December 2024",
       title: "SAT Score",
       content: "Achieved SAT score of 1450 after three attempts.",
       icon: "📚",
@@ -76,6 +76,12 @@ export default function Story() {
       date: "January 2025",
       title: "University Applications",
       content: "Submitted applications to top US universities.",
+      icon: "🎓",
+    },
+    {
+      date: "March 2025",
+      title: "University Decisions",
+      content: "Received rejections from all top US universities.",
       icon: "🎓",
     },
   ];
@@ -88,19 +94,19 @@ export default function Story() {
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-12 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 bg-clip-text text-transparent"
+          className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-14 bg-gradient-to-r from-gray-900 to-gray-600  bg-clip-text text-transparent"
         >
           My Story
         </motion.h1>
 
         <div className="relative max-w-5xl mx-auto px-2 sm:px-4 lg:px-6">
           <motion.div
-            className="absolute left-5 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-none"
+            className="absolute left-5 md:left-1/2 transform md:-translate-x-1/2 h-full w-1"
             initial={{ height: 0 }}
             animate={{ height: "100%" }}
             transition={{ duration: 1 }}
           >
-            <div className="h-full w-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-full blur-[1px]" />
+            <div className="h-full w-full bg-gradient-to-b from-gray-900 to-gray-600 rounded-full" />
           </motion.div>
 
           <AnimatePresence>
@@ -117,17 +123,17 @@ export default function Story() {
               >
                 <div
                   className={`w-full md:w-5/12 ${
-                    index % 2 === 0 ? "md:pr-8" : "md:pl-8"
+                    index % 2 === 0 ? "md:pr-10" : "md:pl-10"
                   }`}
                 >
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="bg-white p-4 rounded-xl shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+                    className="bg-white p-5 rounded-xl border border-indigo-200 transition duration-300"
                   >
                     <div className="flex flex-wrap items-center gap-2 mb-3 select-none cursor-default">
                       <span className="text-2xl">{item.icon}</span>
-                      <span className="px-3 py-0.5 text-sm font-semibold text-blue-600 bg-blue-50 rounded-full">
+                      <span className="px-3 py-0.5 text-sm font-semibold text-indigo-700 bg-indigo-100 rounded-full">
                         {item.date}
                       </span>
                     </div>
@@ -147,13 +153,12 @@ export default function Story() {
                 </div>
 
                 <motion.div
-                  className="absolute left-5 md:left-1/2 top-4 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2"
-                  whileHover={{ scale: 1.2 }}
+                  className="absolute left-[1.25rem] md:left-1/2 top-5 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10"
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   <div
-                    className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full 
-                    flex items-center justify-center shadow-lg border-2 border-white
+                    className="w-7 h-7 bg-gradient-to-br from-gray-900 to-gray-600 rounded-full 
+                    flex items-center justify-center shadow-md border-2 border-white
                     transition-transform duration-300 ease-in-out hover:rotate-45"
                   ></div>
                 </motion.div>
@@ -168,11 +173,11 @@ export default function Story() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 md:mt-16 max-w-2xl mx-auto text-center px-4"
+          className="mt-16 md:mt-20 max-w-2xl mx-auto text-center px-4"
         >
-          <div className="relative p-4 md:p-6 bg-white rounded-xl shadow-sm">
+          <div className="relative p-6 md:p-8 bg-white rounded-xl border border-indigo-200">
             <svg
-              className="absolute -top-3 -left-3 md:-top-6 md:-left-6 h-10 w-10 md:h-12 md:w-12 text-gray-200 transform -rotate-12"
+              className="absolute -top-3 -left-3 md:-top-6 md:-left-6 h-10 w-10 md:h-12 md:w-12 text-indigo-200 transform -rotate-12"
               fill="currentColor"
               viewBox="0 0 32 32"
             >

@@ -190,16 +190,18 @@ export default function TravelMap() {
           </div>
         </div>
       </div>
+      <header>
+        <h1 className="text-4xl sm:text-5xl md:text-7xl  font-bold text-center bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+          My Travels
+        </h1>
+        <p className="text-base sm:text-lg text-gray-600 text-center max-w-3xl mx-auto">
+          Traveling has greatly contributed to my growth, enabling me to
+          experience diverse cultures and broaden my perspective. This map
+          highlights my past adventures and future aspirations, showcasing my
+          passion for exploration.
+        </p>
+      </header>
 
-      <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-center bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-        My Travels
-      </h1>
-      <p className="text-base sm:text-lg text-gray-600 text-center max-w-3xl mx-auto">
-        Traveling has greatly contributed to my growth, enabling me to
-        experience diverse cultures and broaden my perspective. This map
-        highlights my past adventures and future aspirations, showcasing my
-        passion for exploration.
-      </p>
       <div className="relative w-full h-[400px] sm:h-[600px] rounded-xl sm:rounded-3xl shadow-xl overflow-hidden border border-gray-200">
         <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent z-[1000] pointer-events-none" />
         <Map
