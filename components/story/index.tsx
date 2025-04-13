@@ -78,12 +78,6 @@ export default function Story() {
       content: "Submitted applications to top US universities.",
       icon: "🎓",
     },
-    {
-      date: "March 2025",
-      title: "University Decisions",
-      content: "Received rejections from all top US universities.",
-      icon: "🎓",
-    },
   ];
 
   return (
