@@ -36,7 +36,7 @@ const projects: Array<{
     stats: {
       "avatars generated": "500+",
     },
-    status: "active",
+    status: "closed",
     tags: [
       "Fine-tuning",
       "Replicate",
