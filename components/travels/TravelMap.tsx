@@ -158,10 +158,6 @@ const Polyline = dynamic(
   { ssr: false }
 );
 
-const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
-  ssr: false,
-});
-
 export default function TravelMap() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [showJourneyStory, setShowJourneyStory] = useState(false);
