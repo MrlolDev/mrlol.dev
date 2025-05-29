@@ -2,6 +2,7 @@
 
 import BackButton from "../ui/BackButton";
 import { motion, AnimatePresence } from "framer-motion";
+import DiagonalBackground from "../BackgroundContainer";
 
 export default function Story() {
   const timelineItems = [
@@ -78,17 +79,39 @@ export default function Story() {
       content: "Submitted applications to top US universities.",
       icon: "🎓",
     },
+
+    {
+      date: "May 2025",
+      title: "University Acceptance",
+      content:
+        "Received acceptance to the University of Groningen, marking the beginning of my higher education journey.",
+      icon: "🎓",
+    },
+    {
+      date: "May 2025",
+      title: "High School Graduation",
+      content:
+        "Graduated from high school, marking the end of an important chapter in my life.",
+      icon: "🎓",
+    },
+    {
+      date: "May 2025",
+      title: "Erasmus in Turkey",
+      content:
+        "Participated in an Erasmus program in Turkey, experiencing a new culture and making international connections while my classmates were at the graduation ceremony.",
+      icon: "🌍",
+    },
   ];
 
   return (
-    <div className="min-h-screen">
+    <DiagonalBackground>
       <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <BackButton className="w-fit" />
 
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-14 bg-gradient-to-r from-gray-900 to-gray-600  bg-clip-text text-transparent"
+          className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-14 text-gray-900"
         >
           My Story
         </motion.h1>
@@ -100,7 +123,7 @@ export default function Story() {
             animate={{ height: "100%" }}
             transition={{ duration: 1 }}
           >
-            <div className="h-full w-full bg-gradient-to-b from-gray-900 to-gray-600 rounded-full" />
+            <div className="h-full w-full bg-gray-300/50 rounded-full" />
           </motion.div>
 
           <AnimatePresence>
@@ -123,16 +146,16 @@ export default function Story() {
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="bg-white p-5 rounded-xl border border-indigo-200 transition duration-300"
+                    className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-gray-200/50 shadow-sm transition duration-300 hover:shadow-md"
                   >
                     <div className="flex flex-wrap items-center gap-2 mb-3 select-none cursor-default">
                       <span className="text-2xl">{item.icon}</span>
-                      <span className="px-3 py-0.5 text-sm font-semibold text-indigo-700 bg-indigo-100 rounded-full">
+                      <span className="px-3 py-0.5 text-sm font-semibold text-gray-700 bg-gray-100/80 rounded-full">
                         {item.date}
                       </span>
                     </div>
 
-                    <h3 className="text-lg md:text-xl font-bold mb-2 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                    <h3 className="text-lg md:text-xl font-bold mb-2 text-gray-900">
                       {item.title}
                     </h3>
 
@@ -151,8 +174,8 @@ export default function Story() {
                   transition={{ type: "spring", stiffness: 400 }}
                 >
                   <div
-                    className="w-7 h-7 bg-gradient-to-br from-gray-900 to-gray-600 rounded-full 
-                    flex items-center justify-center shadow-md border-2 border-white
+                    className="w-7 h-7 bg-white/80 backdrop-blur-sm rounded-full 
+                    flex items-center justify-center shadow-sm border-2 border-gray-200/50
                     transition-transform duration-300 ease-in-out hover:rotate-45"
                   ></div>
                 </motion.div>
@@ -169,9 +192,9 @@ export default function Story() {
           viewport={{ once: true }}
           className="mt-16 md:mt-20 max-w-2xl mx-auto text-center px-4"
         >
-          <div className="relative p-6 md:p-8 bg-white rounded-xl border border-indigo-200">
+          <div className="relative p-6 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
             <svg
-              className="absolute -top-3 -left-3 md:-top-6 md:-left-6 h-10 w-10 md:h-12 md:w-12 text-indigo-200 transform -rotate-12"
+              className="absolute -top-3 -left-3 md:-top-6 md:-left-6 h-10 w-10 md:h-12 md:w-12 text-gray-300 transform -rotate-12"
               fill="currentColor"
               viewBox="0 0 32 32"
             >
@@ -185,6 +208,6 @@ export default function Story() {
           </div>
         </motion.div>
       </div>
-    </div>
+    </DiagonalBackground>
   );
 }

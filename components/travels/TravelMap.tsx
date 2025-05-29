@@ -9,6 +9,18 @@ import { Icon as LeafletIcon } from "leaflet";
 
 const locations = [
   {
+    name: "Mersin",
+    coordinates: [36.8121, 34.6415],
+    year: "2025",
+    isLatest: true,
+    image: "/travels/mersin.jpg",
+  },
+  {
+    name: "Istanbul",
+    coordinates: [41.0082, 28.9784],
+    year: "2025",
+  },
+  {
     name: "Madrid",
     coordinates: [40.4168, -3.7038],
     year: "2024",
@@ -73,7 +85,7 @@ const locations = [
   {
     name: "San Francisco",
     coordinates: [37.7749, -122.4194],
-    year: "2025",
+    year: "June 2025",
     isFuture: true,
   },
   {
@@ -141,11 +153,22 @@ const Marker = dynamic(
   { ssr: false }
 );
 
+const Polyline = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Polyline),
+  { ssr: false }
+);
+
+const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
+  ssr: false,
+});
+
 export default function TravelMap() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [showJourneyStory, setShowJourneyStory] = useState(false);
   const [icons, setIcons] = useState<{
     customIcon: LeafletIcon;
     futureIcon: LeafletIcon;
+    latestIcon: LeafletIcon;
   } | null>(null);
 
   useEffect(() => {
@@ -165,7 +188,14 @@ export default function TravelMap() {
         iconAnchor: [19, 19],
       });
 
-      setIcons({ customIcon, futureIcon });
+      const latestIcon = new Icon({
+        iconUrl:
+          "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2322C55E' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%2322C55E' stroke='white' stroke-width='3'/%3E%3Ccircle cx='12' cy='12' r='4' fill='white'/%3E%3C/svg%3E",
+        iconSize: [48, 48],
+        iconAnchor: [24, 24],
+      });
+
+      setIcons({ customIcon, futureIcon, latestIcon });
     });
   }, []);
 
@@ -187,6 +217,10 @@ export default function TravelMap() {
           <div className="flex items-center gap-1.5 sm:gap-2">
             <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-indigo-500 ring-2 ring-indigo-200"></div>
             <span className="font-medium">Future Plans</span>
+          </div>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-green-500 ring-2 ring-green-200"></div>
+            <span className="font-medium">Latest Visit</span>
           </div>
         </div>
       </div>
@@ -219,16 +253,40 @@ export default function TravelMap() {
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
             className="opacity-95"
           />
-          {locations.map(({ name, coordinates, isFuture }) => (
+          {locations.map(({ name, coordinates, isFuture, isLatest }) => (
             <Marker
               key={name}
               position={coordinates as [number, number]}
-              icon={isFuture ? icons.futureIcon : icons.customIcon}
+              icon={
+                isLatest
+                  ? icons.latestIcon
+                  : isFuture
+                  ? icons.futureIcon
+                  : icons.customIcon
+              }
               eventHandlers={{
-                click: () => setSelectedLocation(name),
+                click: () => {
+                  if (name === "Istanbul") {
+                    setShowJourneyStory(true);
+                  } else {
+                    setSelectedLocation(name);
+                  }
+                },
               }}
             />
           ))}
+
+          {/* Journey line from Istanbul to Mersin via Ankara */}
+          <Polyline
+            positions={[
+              [41.0082, 28.9784], // Istanbul
+              [39.9334, 32.8597], // Ankara
+              [36.8121, 34.6415], // Mersin
+            ]}
+            color="#6366F1"
+            weight={3}
+            dashArray="5, 10"
+          />
         </Map>
 
         {selectedLocation && (
@@ -290,6 +348,43 @@ export default function TravelMap() {
                   />
                 </div>
               )}
+            </div>
+          </div>
+        )}
+
+        {showJourneyStory && (
+          <div className="absolute w-[calc(100%-2rem)] sm:w-auto sm:min-w-[350px] bottom-4 h-fit sm:top-4 left-4 sm:left-auto sm:right-4 bg-white/95 backdrop-blur-md p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 transform z-[2000]">
+            <button
+              onClick={() => setShowJourneyStory(false)}
+              className="absolute top-2 sm:top-4 right-2 sm:right-4 text-gray-400 hover:text-gray-600 transition-colors p-1.5 sm:p-2 hover:bg-gray-100 rounded-full"
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="flex w-fit flex-col gap-3 sm:gap-4">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
+                The Unexpected Journey
+              </h3>
+              <p className="text-gray-600 w-fit">
+                After missing our flight, me and my friends ended up on a crazy
+                15-hour bus ride from Istanbul to Mersin via Ankara. What seemed
+                like a total disaster at first turned into this wild adventure
+                through Turkey - we got to see some amazing views and meet super
+                friendly locals who made the long journey way more fun than we
+                expected!
+              </p>
             </div>
           </div>
         )}
