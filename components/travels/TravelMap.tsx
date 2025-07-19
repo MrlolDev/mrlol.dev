@@ -23,7 +23,7 @@ const locations = [
   {
     name: "Madrid",
     coordinates: [40.4168, -3.7038],
-    year: "2024",
+    year: "2024,2025",
   },
   {
     name: "London",
@@ -86,37 +86,30 @@ const locations = [
     name: "San Francisco",
     coordinates: [37.7749, -122.4194],
     year: "June 2025",
-    isFuture: true,
+    image: "/travels/sf.jpg",
   },
   {
     name: "Prague",
     coordinates: [50.0755, 14.4378],
-    year: "2025",
-    isFuture: true,
+    year: "July 2025",
+    image: "/travels/prague.jpg",
   },
   {
     name: "Vienna",
     coordinates: [48.2082, 16.3738],
-    year: "2025",
-    isFuture: true,
+    year: "July 2025",
   },
   {
     name: "Budapest",
     coordinates: [47.4979, 19.0402],
-    year: "2025",
-    isFuture: true,
+    year: "July 2025",
+    image: "/travels/budapest.jpg",
   },
   {
     name: "New York",
     coordinates: [40.7128, -74.006],
     isFuture: true,
     unspecifiedDate: true,
-  },
-  {
-    name: "Amsterdam",
-    coordinates: [52.3676, 4.9041],
-    unspecifiedDate: true,
-    isFuture: true,
   },
   {
     name: "Dubai",
