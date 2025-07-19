@@ -84,14 +84,14 @@ export default function Story() {
       date: "May 2025",
       title: "University Acceptance",
       content:
-        "Received acceptance to the University of Groningen, marking the beginning of my higher education journey.",
+        "Received acceptances to the University of Groningen, Maastricht University, and Radboud University.",
       icon: "🎓",
     },
     {
       date: "May 2025",
       title: "High School Graduation",
       content:
-        "Graduated from high school, marking the end of an important chapter in my life.",
+        "Graduated from high school, marking the end of an important chapter in my life. Even though I was top of my class with a 9.4/10 average in all of upper secondary education (Bachillerato) and a 12.39/14 in the Spanish university entrance exam (Selectividad), I did not receive the prize that was rightfully mine.",
       icon: "🎓",
     },
     {
@@ -100,6 +100,20 @@ export default function Story() {
       content:
         "Participated in an Erasmus program in Turkey, experiencing a new culture and making international connections while my classmates were at the graduation ceremony.",
       icon: "🌍",
+    },
+    {
+      date: "June 2025",
+      title: "YC AI Startup School",
+      content:
+        "Attended YC AI Startup School in San Francisco, learning from industry leaders and connecting with fellow AI entrepreneurs.",
+      icon: "🚀",
+    },
+    {
+      date: "July 2025",
+      title: "Joined Delphi.ai as a Software Engineer",
+      content:
+        "Started working at Delphi.ai, contributing to AI development and innovation.",
+      icon: "🤖",
     },
   ];
 
