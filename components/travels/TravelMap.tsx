@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import BackButton from "../ui/BackButton";
+import PageHeader from "../ui/PageHeader";
 import "leaflet/dist/leaflet.css";
 import { Icon as LeafletIcon } from "leaflet";
 
@@ -193,11 +193,11 @@ export default function TravelMap() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col gap-4 sm:gap-8 w-full h-full max-w-7xl mx-auto items-center justify-start py-6 sm:py-12 px-2 sm:px-8">
-      <div className="w-full flex flex-row items-center gap-4 sm:gap-0 justify-between">
-        <div className="py-2 sm:py-2.5">
-          <BackButton />
-        </div>
+    <div className="flex flex-col gap-4 sm:gap-8 w-full max-w-7xl mx-auto items-center justify-start px-2 sm:px-8 ">
+      <PageHeader
+        title="My Trips"
+        subtitle="Traveling has greatly contributed to my growth, enabling me to experience diverse cultures and broaden my perspective. This map highlights my past adventures and future aspirations, showcasing my passion for exploration."
+      >
         <div className="flex gap-4 sm:gap-6 items-center justify-center text-xs sm:text-sm bg-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center gap-1.5 sm:gap-2">
             <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-red-500 ring-2 ring-red-200"></div>
@@ -207,25 +207,10 @@ export default function TravelMap() {
             <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-indigo-500 ring-2 ring-indigo-200"></div>
             <span className="font-medium">Future Plans</span>
           </div>
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-full bg-green-500 ring-2 ring-green-200"></div>
-            <span className="font-medium">Latest Visit</span>
-          </div>
         </div>
-      </div>
-      <header>
-        <h1 className="text-4xl sm:text-5xl md:text-7xl  font-bold text-center bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-          My Travels
-        </h1>
-        <p className="text-base sm:text-lg text-gray-600 text-center max-w-3xl mx-auto">
-          Traveling has greatly contributed to my growth, enabling me to
-          experience diverse cultures and broaden my perspective. This map
-          highlights my past adventures and future aspirations, showcasing my
-          passion for exploration.
-        </p>
-      </header>
+      </PageHeader>
 
-      <div className="relative w-full h-[400px] sm:h-[600px] rounded-xl sm:rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+      <div className="relative w-full h-[500px]  rounded-xl sm:rounded-3xl shadow-xl overflow-hidden border border-gray-200">
         <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent z-[1000] pointer-events-none" />
         <Map
           center={[35, -20]}

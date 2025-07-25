@@ -1,7 +1,6 @@
 "use client";
 
-import BackButton from "../ui/BackButton";
-import { motion, AnimatePresence } from "framer-motion";
+import PageHeader from "../ui/PageHeader";
 import DiagonalBackground from "../BackgroundContainer";
 
 export default function Story() {
@@ -118,110 +117,18 @@ export default function Story() {
   ];
 
   return (
-    <DiagonalBackground>
-      <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        <BackButton className="w-fit" />
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <PageHeader title="My Story" />
 
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-14 text-gray-900"
-        >
-          My Story
-        </motion.h1>
-
-        <div className="relative max-w-5xl mx-auto px-2 sm:px-4 lg:px-6">
-          <motion.div
-            className="absolute left-5 md:left-1/2 transform md:-translate-x-1/2 h-full w-1"
-            initial={{ height: 0 }}
-            animate={{ height: "100%" }}
-            transition={{ duration: 1 }}
-          >
-            <div className="h-full w-full bg-gray-300/50 rounded-full" />
-          </motion.div>
-
-          <AnimatePresence>
-            {timelineItems.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex flex-col md:flex-row items-start md:items-center select-none cursor-default
-                  ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} 
-                  mb-10 md:mb-16 pl-16 md:pl-0`}
-              >
-                <div
-                  className={`w-full md:w-5/12 ${
-                    index % 2 === 0 ? "md:pr-10" : "md:pl-10"
-                  }`}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-gray-200/50 shadow-sm transition duration-300 hover:shadow-md"
-                  >
-                    <div className="flex flex-wrap items-center gap-2 mb-3 select-none cursor-default">
-                      <span className="text-2xl">{item.icon}</span>
-                      <span className="px-3 py-0.5 text-sm font-semibold text-gray-700 bg-gray-100/80 rounded-full">
-                        {item.date}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg md:text-xl font-bold mb-2 text-gray-900">
-                      {item.title}
-                    </h3>
-
-                    <div
-                      className="text-gray-600 leading-relaxed prose prose-sm 
-                        prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
-                        prose-strong:text-gray-900 prose-strong:font-semibold
-                        max-w-none text-sm"
-                      dangerouslySetInnerHTML={{ __html: item.content }}
-                    />
-                  </motion.div>
-                </div>
-
-                <motion.div
-                  className="absolute left-[1.25rem] md:left-1/2 top-5 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10"
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <div
-                    className="w-7 h-7 bg-white/80 backdrop-blur-sm rounded-full 
-                    flex items-center justify-center shadow-sm border-2 border-gray-200/50
-                    transition-transform duration-300 ease-in-out hover:rotate-45"
-                  ></div>
-                </motion.div>
-
-                <div className="hidden md:block md:w-5/12" />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+      <div className="flex items-center justify-center py-20">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-pulse">🚧</div>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+            Coming Soon
+          </h2>
+          <p className="text-gray-600">My story is being written...</p>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 md:mt-20 max-w-2xl mx-auto text-center px-4"
-        >
-          <div className="relative p-6 md:p-8 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm">
-            <svg
-              className="absolute -top-3 -left-3 md:-top-6 md:-left-6 h-10 w-10 md:h-12 md:w-12 text-gray-300 transform -rotate-12"
-              fill="currentColor"
-              viewBox="0 0 32 32"
-            >
-              <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-            </svg>
-            <p className="text-lg md:text-xl italic font-medium text-gray-700 leading-relaxed">
-              Throughout these years, I&apos;ve traveled, had fun, learned, made
-              friends, and coded. I&apos;m grateful for all these experiences
-              and looking forward to what the future holds.
-            </p>
-          </div>
-        </motion.div>
       </div>
-    </DiagonalBackground>
+    </div>
   );
 }

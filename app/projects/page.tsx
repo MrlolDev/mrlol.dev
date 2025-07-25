@@ -4,11 +4,9 @@ import Projects from "@/components/projects";
 
 export default function ProjectsPage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen overflow-y-auto">
-      <BackgroundContainer className="flex flex-col items-center justify-start md:justify-center py-4 pb-0 min-h-screen">
-        <Projects />
-        <Footer className="relative" />
-      </BackgroundContainer>
-    </main>
+    <BackgroundContainer className="flex flex-col items-center justify-between pt-2 w-full min-h-screen">
+      <Projects />
+      <Footer className="relative mt-auto" />
+    </BackgroundContainer>
   );
 }

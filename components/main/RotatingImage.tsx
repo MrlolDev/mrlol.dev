@@ -32,11 +32,12 @@ export default function RotatingImage({
     <Image
       src={currentImage}
       alt={alt}
-      width={64}
-      height={64}
-      className={`rounded-full border border-black ${
-        isTransitioning ? "opacity-0 scale-90" : "opacity-100 scale-100"
-      } transition-all duration-300 ease-in-out`}
+      width={96}
+      height={96}
+      className={`
+        w-32 h-32 sm:w-16 sm:h-16 rounded-full border border-black ${
+          isTransitioning ? "opacity-0 scale-90" : "opacity-100 scale-100"
+        } transition-all duration-300 ease-in-out`}
     />
   );
 }

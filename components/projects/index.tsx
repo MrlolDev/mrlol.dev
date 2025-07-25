@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { Github, Link as LinkIcon } from "lucide-react";
 import { useState } from "react";
-import BackButton from "../ui/BackButton";
-type ProjectStatus = "closed" | "acquired" | "active";
+import PageHeader from "../ui/PageHeader";
+type ProjectStatus = "closed" | "acquired" | "active" | "paused";
 
 const projects: Array<{
   title: string;
@@ -52,7 +52,7 @@ const projects: Array<{
     description:
       "Interactive platform helping students track college application deadlines and decisions. Attracted over 5,000 unique visitors during peak admission season",
     year: "2024-2025",
-    status: "active",
+    status: "paused",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn/UI"],
     link: "https://collegedecision.us",
   },
@@ -135,7 +135,9 @@ export default function Projects() {
     }));
   };
 
-  const getStatusConfig = (status: "closed" | "acquired" | "active") => {
+  const getStatusConfig = (
+    status: "closed" | "acquired" | "active" | "paused"
+  ) => {
     const configs = {
       closed: {
         bg: "bg-red-50",
@@ -155,22 +157,22 @@ export default function Projects() {
         label: "Active",
         border: "border-green-200 hover:border-green-300",
       },
+      paused: {
+        bg: "bg-yellow-50",
+        text: "text-yellow-600",
+        label: "Paused",
+        border: "border-yellow-200 hover:border-yellow-300",
+      },
     } as const;
     return configs[status] || configs.active;
   };
 
   return (
-    <div className="h-full flex flex-col gap-4 md:gap-6 w-full max-w-6xl mx-auto items-start justify-start py-4 sm:py-8 px-3 sm:px-6 lg:px-8">
-      <BackButton />
-      <>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center w-full bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-          My Projects
-        </h1>
-        <p className="text-gray-600 text-center mb-2 sm:mb-6 text-sm sm:text-base px-2 w-full">
-          Featuring some of my most impactful projects that have shaped my
-          journey as a developer.
-        </p>
-      </>
+    <div className="flex flex-col gap-4 md:gap-6 w-full max-w-6xl mx-auto items-start justify-start px-3 sm:px-6 lg:px-8 pb-12">
+      <PageHeader
+        title="My Projects"
+        subtitle="Featuring some of my most impactful projects that have shaped my journey as a developer."
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 w-full">
         {projects.map((project) => (
           <div
