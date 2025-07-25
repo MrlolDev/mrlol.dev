@@ -12,6 +12,41 @@ export default function Story() {
       icon: "👶",
     },
     {
+      date: "2012-2023",
+      title: "English After-School Classes",
+      content:
+        "Started English after-school lessons at 5 years old and continued until 16 years old, developing strong language skills from an early age.",
+      icon: "📚",
+    },
+    {
+      date: "2013-2015",
+      title: "Triathlon Journey Begins",
+      content:
+        "Started doing triathlon at around 6-8 years old. I wasn't particularly good at it, but I had a lot of fun and it marked the beginning of my athletic journey.",
+      icon: "🏊‍♂️",
+    },
+    {
+      date: "2018",
+      title: "Triathlon Pause",
+      content:
+        "Had to stop triathlon due to an injury, marking a temporary end to my competitive athletic pursuits.",
+      icon: "🩹",
+    },
+    {
+      date: "2018-2021",
+      title: "Music Band Experience",
+      content:
+        "Joined a music band and stayed for a few years, playing drums for Easter performances and also learning xylophone and timbales (Cuban percussion instruments).",
+      icon: "🥁",
+    },
+    {
+      date: "2017",
+      title: "First Windsurf Experience",
+      content:
+        "Tried windsurfing for the first time, discovering a new passion for water sports and adventure.",
+      icon: "🏄‍♂️",
+    },
+    {
       date: "2013-2015",
       title: "Robotics Club",
       content:
@@ -26,11 +61,46 @@ export default function Story() {
       icon: "🎓",
     },
     {
+      date: "2021",
+      title: "First Design Studio",
+      content:
+        "Founded kldesigns, a design studio, and earned my first internet money through selling designs and animations made with cracked Photoshop and After Effects.",
+      icon: "🎨",
+    },
+    {
+      date: "September 2021",
+      title: "First SaaS Launch",
+      content:
+        "Launched my first real SaaS project in collaboration with a streamers community where they could grow together easily. Got 20M visits in 3 hours due to an attack but achieved 0 downtime. The site was poorly developed but I'm proud of how I handled the situation.",
+      icon: "🚀",
+    },
+    {
+      date: "End of 2021",
+      title: "Loick.team",
+      content:
+        "Created Loick.team with the idea of developing tech products together as a team led by me. Got 10 developers to join and work on a variety of products, though none of them launched.",
+      icon: "👥",
+    },
+    {
+      date: "2022",
+      title: "Cybersecurity Experience",
+      content:
+        "Collaborated with a high-traffic website (100k visitors per month) that suffered consistent attacks. Successfully defended against these attacks, improving my skills in developing secure websites.",
+      icon: "🛡️",
+    },
+    {
       date: "2020-2023",
       title: "Various Projects",
       content:
         "Started various projects including <a href='https://wolfgg.live' target='_blank' rel='noopener noreferrer' className='text-blue-600 hover:underline'>wolfgg</a>. Learned Next.js and expanded programming skills.",
       icon: "💻",
+    },
+    {
+      date: "2023",
+      title: "Cycling Return",
+      content:
+        "Started cycling again every week, reconnecting with my passion for endurance sports and outdoor activities.",
+      icon: "🚴‍♂️",
     },
     {
       date: "December 2022 - 2023",
@@ -46,6 +116,14 @@ export default function Story() {
         "Started working as a developer at <a href='https://getwildfire.gg' target='_blank' rel='noopener noreferrer' className='text-blue-600 hover:underline'>Wildfire</a>.",
       icon: "🔥",
     },
+    {
+      date: "Summer 2024",
+      title: "Windsurf in Brazil",
+      content:
+        "Went back to windsurfing after some years, enjoying the water sport again during my time in Brazil.",
+      icon: "🏄‍♂️",
+    },
+
     {
       date: "March 2024",
       title: "Aditus Programme",
@@ -106,11 +184,19 @@ export default function Story() {
         "Attended YC AI Startup School in San Francisco, learning from industry leaders and connecting with fellow AI entrepreneurs.",
       icon: "🚀",
     },
+
+    {
+      date: "July 2025",
+      title: "European Adventure with Friends",
+      content:
+        "Embarked on an exciting trip through Europe with hometown friends, visiting Prague, Vienna, Budapest, and Rome. It was a really fun adventure exploring different cultures and creating lasting memories.",
+      icon: "🌍",
+    },
     {
       date: "July 2025",
       title: "Joined Delphi.ai as a Software Engineer",
       content:
-        "Started working at Delphi.ai, contributing to AI development and innovation.",
+        "Left Wildfire (my first job) after almost 2 years and started working at Delphi.ai, contributing to AI development and innovation.",
       icon: "🤖",
     },
   ];
