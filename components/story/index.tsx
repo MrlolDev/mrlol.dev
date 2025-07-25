@@ -1,7 +1,6 @@
 "use client";
 
 import PageHeader from "../ui/PageHeader";
-import DiagonalBackground from "../BackgroundContainer";
 
 export default function Story() {
   const timelineItems = [
@@ -115,6 +114,7 @@ export default function Story() {
       icon: "🤖",
     },
   ];
+  console.log(timelineItems);
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
